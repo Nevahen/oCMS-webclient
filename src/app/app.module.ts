@@ -6,7 +6,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { PageviewComponent } from './pageview/pageview.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { SafePipe } from './safe.pipe';
 import { PageService } from './page.service';
 
 export const ROUTES: Routes = [
@@ -29,7 +28,6 @@ export const ROUTES: Routes = [
     AppComponent,
     PageviewComponent,
     NavbarComponent,
-    SafePipe,
   ],
   imports: [
     BrowserModule,

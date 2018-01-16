@@ -7,7 +7,7 @@ import 'rxjs/add/observable/of';
 export class PageService {
 
 
-  mainpage = pages.mainpage;
+  errorpage = pages.errorpage;
 
 
   constructor(
@@ -18,7 +18,7 @@ export class PageService {
       if(pages[str]){
         return Observable.of(pages[str]);
       }else{
-        return Observable.of(this.mainpage);
+        return Observable.of(this.errorpage);
       }
   }
 

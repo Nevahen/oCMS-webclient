@@ -1,3 +1,3 @@
-var mocknav = ["mainpage","about","dashboard"];
+var mocknav = ["mainpage","about","videos"];
 
 export{mocknav};

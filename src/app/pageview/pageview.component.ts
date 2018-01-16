@@ -1,14 +1,14 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router/';
-import { DomSanitizer } from '@angular/platform-browser/';
+import { DomSanitizer, Title } from '@angular/platform-browser/';
 import { PageService } from '../page.service';
 import { Router } from '@angular/router/';
 
 
 @Component({
   selector: 'app-pageview',
-  template: '<navbar></navbar><div *ngIf="currentPage" [innerHtml]="currentPage.content"></div>',
-  styleUrls: ['./pageview.component.scss']
+  templateUrl: '../../themes/default/theme.html',
+  styleUrls: ['../../themes/default/theme.scss']
 })
 export class PageviewComponent implements OnInit {
 
@@ -16,7 +16,7 @@ export class PageviewComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private pageService: PageService,
-    private cdRef: ChangeDetectorRef
+    private titleService: Title
   ) { }
 
   ngOnInit() {
@@ -30,12 +30,17 @@ export class PageviewComponent implements OnInit {
     this.getPage(this.id)
   }
 
-  id:string;
-  currentPage;
-
+  private id:string;
+  private currentPage;
+  /**
+   * Gets the requested page from [[pageService]] and updates view and title
+   *@param id The route to the page
+   */
   public getPage(id:string){
     this.pageService.GetPage(id)
-    .subscribe(page => this.currentPage = page);
+    .subscribe(page => {this.currentPage = page;
+    this.titleService.setTitle(this.currentPage.title);
+    });
   }
 
 }
