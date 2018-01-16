@@ -1,0 +1,5 @@
+
+  <ul class="nav nav-pills">
+  <li *ngFor="let link of navItems" class="nav-item"><a [routerLink]="['/',link]" class="nav-link" href="#">{{link | uppercase}}</a></li>
+</ul>
+
