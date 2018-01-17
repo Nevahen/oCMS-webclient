@@ -1,6 +1,6 @@
 # OCMS
 
-**/!\ Work in progress! /!\**
+**/!\ Work in progress! /!\\**
 
 ## About this project
 
