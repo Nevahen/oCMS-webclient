@@ -7,15 +7,24 @@ import { AppComponent } from './app.component';
 import { PageviewComponent } from './pageview/pageview.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PageService } from './page.service';
+import { AuthGuardService } from './auth-guard.service';
+import { LoginComponent } from './login/login.component';
+import { DashboardLoginComponent } from './dashboard/dashboard-login/dashboard-login.component';
+import { FormsModule } from '@angular/forms';
 
 export const ROUTES: Routes = [
   {
     path: 'dashboard',
+    canActivate:[AuthGuardService],
     loadChildren: './dashboard/dashboard.module#DashboardModule'
   },
   {
     path: '',
     component: PageviewComponent
+  },
+  {
+    path: 'dashboard/login',
+    component: DashboardLoginComponent
   },
   {
     path: ':string',
@@ -28,11 +37,15 @@ export const ROUTES: Routes = [
     AppComponent,
     PageviewComponent,
     NavbarComponent,
+    LoginComponent,
+    DashboardLoginComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(ROUTES)],
-  providers: [PageService],
+    RouterModule.forRoot(ROUTES),
+    FormsModule
+  ],
+  providers: [PageService,AuthGuardService],
   bootstrap: [AppComponent]
 })
 

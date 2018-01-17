@@ -3,6 +3,7 @@ import { pages } from '../mockdata/mockpages'
 import { DomSanitizer } from '@angular/platform-browser/';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import { Router } from '@angular/router';
 @Injectable()
 export class PageService {
 
@@ -11,7 +12,8 @@ export class PageService {
 
 
   constructor(
-    private sanitazer: DomSanitizer
+    private sanitazer: DomSanitizer,
+    private router:Router
   ) { }
 
   GetPage(str:string):Observable<any>{

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AuthGuardService } from '../auth-guard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,9 +9,14 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authGuard: AuthGuardService) { }
 
   ngOnInit() {
+  }
+
+  logOut(){
+    this.authGuard.LogOut();
+   
   }
 
 }

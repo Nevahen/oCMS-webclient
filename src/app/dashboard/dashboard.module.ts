@@ -3,9 +3,17 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule} from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { FormsModule } from '@angular/forms';
-import { DashboardLoginComponent } from '../dashboard-login/dashboard-login.component';
+import { DashboardLoginComponent } from './dashboard-login/dashboard-login.component';
+import { MainviewComponent } from './mainview/mainview.component';
+import { AuthGuardService } from '../auth-guard.service';
 
-export const ROUTES: Routes = [{ path: '', component: DashboardComponent }];
+export const ROUTES: Routes = [
+  {
+    path: '',
+    component: DashboardComponent,
+   
+  }
+];
 
 @NgModule({
   imports: [
@@ -13,7 +21,7 @@ export const ROUTES: Routes = [{ path: '', component: DashboardComponent }];
     FormsModule,
     RouterModule.forChild(ROUTES)
   ],
-  declarations: [DashboardComponent, DashboardLoginComponent]
+  declarations: [DashboardComponent, MainviewComponent]
 })
 export class DashboardModule {
 
