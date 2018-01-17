@@ -1,41 +1,72 @@
 <div class="page-root">
   <div class="container">
     <div class="row">
+      <!--Header-->
       <header>
-        <div class="row">
+        <div class="col-md-12">
 
           <h1>My oCMS</h1>
         </div>
-        <div class="row">
+        <div class="col-md-12">
           <p>Prototype..</p>
 
         </div>
       </header>
     </div>
     <navbar class="navbar row"></navbar>
-    <div [innerHtml]="currentPage.content" class="content row"></div>
-    <div class="row">
+    <div class="content row">
+      <!-- main content -->
+      <div class="col-md-9 col-cs-12" [innerHtml]="currentPage.content"></div>
+      <!--Widget space-->
+      <div class="col-md-3 col-xs-12 widget-area">
+        <div class="col-md-12">
+          <h1>Widget</h1>
+
+          <ul>
+            <li>Article 1</li>
+            <li>Article 2</li>
+            <li>Article 3</li>
+            <li>Article 4</li>
+            <li>Artocle 5</li>
+            <li>Artocle 5</li>
+            <li>Artocle 5</li>
+            <li>Artocle 5</li>
+
+          </ul>
+        </div>
+        <div class="col-md-12 col-xs-12">
+          <h1>Widget</h1>
+        </div>
+      </div>
+    </div>
+<div class="row clearfix">
+  
       <footer>
+  
         <div class="row">
+          <!--Footer left-->
           <div class="col-md-6">
             <h3>About Us</h3>
             <p>Currently single-man powered programming workshop, providing websolutions.</p>
           </div>
-          <div class="col-md-6 text-nowrap">
-
+          <!--Footer right-->
+          <div class="col-md-6">
+    
             <h3>Contact us</h3>
-         
-
+    
+    
             <p>contact@domain.com</p>
-
+    
             <p>Street B 27, Helsinki</p>
             <p>Finland</p>
-        </div>
-
           </div>
-
+        </div>
+  
+  
+  
       </footer>
-      </div>
+  
+</div>
 
-    </div>
   </div>
+</div>

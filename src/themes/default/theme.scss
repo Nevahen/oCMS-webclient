@@ -1,7 +1,7 @@
 .page-root{
     width: 100%;
     height: 100%;
-    background: linear-gradient(#e3e3e3 70%, #000);
+    background: linear-gradient(#e3e3e3 30%, rgb(6, 69, 129));
     background-attachment: fixed; 
 }
 header{
@@ -52,13 +52,19 @@ header{
     
 }
 
+.widget-area{
+    ul{
+        list-style: none;
+        padding-left: 0px;
+    }
+}
+
 footer{
     box-shadow: 0px -1px 2px rgba(7, 7, 7, 0.418);    
     background: #efefef;
-    width: 100%;
     min-height: 20vh;
-    padding: 5px;
-
+    padding: 10px;
+    width: 100%;
     h3:after{
         content: "";
        width: 100%;

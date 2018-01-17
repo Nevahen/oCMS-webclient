@@ -10,12 +10,12 @@ var pages = {
     about:{
         path: "about",
         title: "oCMS - About",
-        content: "&copy; Nevahen"
+        content: "<h1>About</h1><p>oCMS is a simple Angular 5 and NodeJS based Content Management System, developed for learning purposes.</p>"
     },
     errorpage:{
         path: "404",
         title: "404 - Page not found",
-        content: "<div class='col-md-12'><h1>404 - Didn't find that one!</h1><p>Oops, seems like we don't have what you are looking for..</p></div>"
+        content: "<h1>404 - Didn't find that one!</h1><p>Oops, seems like we don't have what you are looking for..</p>"
     }
 
 
