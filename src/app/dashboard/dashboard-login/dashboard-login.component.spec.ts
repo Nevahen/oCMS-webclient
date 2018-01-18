@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DashboardLoginComponent } from './dashboard-login.component';
+import { Form, FormsModule } from '@angular/forms';
+import { AuthGuardService } from '../../auth-guard.service';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
 
 describe('DashboardLoginComponent', () => {
   let component: DashboardLoginComponent;
@@ -8,7 +12,9 @@ describe('DashboardLoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashboardLoginComponent ]
+      imports:[FormsModule,RouterTestingModule.withRoutes([])],
+      declarations: [DashboardLoginComponent],
+      providers:[AuthGuardService]
     })
     .compileComponents();
   }));
