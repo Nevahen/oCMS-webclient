@@ -4,12 +4,6 @@
 module.exports = function (config) {
 
   cfg = {
-    customLaunchers:{
-      Chrome_travis_ci:{
-        base: 'Chrome',
-        flags: ['--no-sandbox']
-      }
-    },
     basePath: '',
     frameworks: ['jasmine', '@angular/cli'],
     plugins: [
@@ -35,12 +29,7 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
-    singleRun: false
+    singleRun: true
   }
-
-  if (process.env.TRAVIS) {
-    cfg.browsers = ['Chrome_travis_ci'];
-}
-
   config.set(cfg);
 };
