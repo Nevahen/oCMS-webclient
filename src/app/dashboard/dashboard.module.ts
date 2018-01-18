@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { DashboardLoginComponent } from './dashboard-login/dashboard-login.component';
 import { MainviewComponent } from './mainview/mainview.component';
 import { AuthGuardService } from '../auth-guard.service';
+import { DashboardNavigationComponent } from './dashboard-navigation/dashboard-navigation.component';
 
 export const ROUTES: Routes = [
   {
@@ -21,7 +22,7 @@ export const ROUTES: Routes = [
     FormsModule,
     RouterModule.forChild(ROUTES)
   ],
-  declarations: [DashboardComponent, MainviewComponent]
+  declarations: [DashboardComponent, MainviewComponent, DashboardNavigationComponent]
 })
 export class DashboardModule {
 

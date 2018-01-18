@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-mainview',
+  selector: 'dashboard-mainview',
   templateUrl: './mainview.component.html',
   styleUrls: ['./mainview.component.scss']
 })
