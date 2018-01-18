@@ -1,0 +1,40 @@
+.form-container{
+    background: rgb(255, 255, 255);
+    min-height: 240px;
+    padding: 20px;
+    border-radius: 1em;
+    border: 1px solid #c2c2c2;
+}
+
+form{
+    label{
+        font-weight: 600;
+    }
+
+
+}
+
+
+h2{
+    text-shadow: 2px 3px #cccccc;
+    padding-left:10px;
+}
+
+body{
+    height:100vh;
+    background: linear-gradient(white,lightblue);
+    background-repeat: no-repeat;
+}
+
+p{
+    transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+form{
+    box-shadow: 2px 2px 5px rgb(126, 126, 126);
+    background: linear-gradient(rgb(237, 247, 248),rgb(212, 235, 243)) !important;
+}
+
+.container{
+margin-top: 20vh;
+}
