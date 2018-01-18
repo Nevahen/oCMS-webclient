@@ -31,7 +31,7 @@ export class PageviewComponent implements OnInit {
   }
 
   private id:string;
-  private currentPage;
+  public currentPage;
   /**
    * Gets the requested page from [[pageService]] and updates view and title
    *@param id The route to the page
