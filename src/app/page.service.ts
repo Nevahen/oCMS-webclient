@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser/';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { Router } from '@angular/router';
+import { forEach } from '@angular/router/src/utils/collection';
 @Injectable()
 export class PageService {
 
@@ -22,6 +23,18 @@ export class PageService {
       }else{
         return Observable.of(this.errorpage);
       }
+  }
+
+  GetPageTitles(){
+
+    let result = [];
+
+    for(let page in pages){
+      result.push(page);
+    }
+    console.log(result);
+    return result;
+    
   }
 
 

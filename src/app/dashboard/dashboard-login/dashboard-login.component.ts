@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthGuardService } from '../../auth-guard.service';
+import { ViewEncapsulation } from '@angular/core';
 
 
 @Component({
   selector: 'dashboard-login',
   templateUrl: './dashboard-login.component.html',
-  styleUrls: ['./dashboard-login.component.scss'],
-  
+  styleUrls: ['./dashboard-login.component.scss']  
 })
 export class DashboardLoginComponent implements OnInit {
 
