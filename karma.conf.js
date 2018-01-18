@@ -2,7 +2,8 @@
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
 module.exports = function (config) {
-  config.set({
+
+  cfg = {
     customLaunchers:{
       Chrome_travis_ci:{
         base: 'Chrome',
@@ -35,5 +36,11 @@ module.exports = function (config) {
     autoWatch: true,
     browsers: ['Chrome'],
     singleRun: false
-  });
+  }
+
+  if (process.env.TRAVIS) {
+    cfg.browsers = ['Chrome_travis_ci'];
+}
+
+  config.set(cfg);
 };
