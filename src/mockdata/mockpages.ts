@@ -16,6 +16,9 @@ var pages = {
         path: "404",
         title: "404 - Page not found",
         content: "<h1>404 - Didn't find that one!</h1><p>Oops, seems like we don't have what you are looking for..</p>"
+    },
+    test:{
+        joku:"jkl"
     }
 
 

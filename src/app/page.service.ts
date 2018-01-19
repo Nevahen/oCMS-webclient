@@ -5,11 +5,13 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { Router } from '@angular/router';
 import { forEach } from '@angular/router/src/utils/collection';
+import { Page } from './_models/page';
 @Injectable()
 export class PageService {
 
 
-  errorpage = pages.errorpage;
+  errorpage = "errorpage";
+  i = 0;
 
 
   constructor(
@@ -17,11 +19,13 @@ export class PageService {
     private router:Router
   ) { }
 
-  GetPage(str:string):Observable<any>{
+  GetPage(str:string):Observable<Page>{
+    this.i++;
+    console.log(this.i);
       if(pages[str]){
         return Observable.of(pages[str]);
       }else{
-        return Observable.of(this.errorpage);
+        return Observable.of(pages[this.errorpage]);
       }
   }
 
@@ -32,10 +36,6 @@ export class PageService {
     for(let page in pages){
       result.push(page);
     }
-    console.log(result);
-    return result;
-    
+    return result;    
   }
-
-
 }

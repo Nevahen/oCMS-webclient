@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { PagesOverviewComponent } from './overview/overview.component';
 import { EditpageComponent } from './editpage/editpage.component';
 
-
 export const ROUTES: Routes = [
   {
     path: '',
@@ -18,9 +17,7 @@ export const ROUTES: Routes = [
       redirectTo:""
     }
   ]
-    
-  }
-
+  }];
 
 @NgModule({
   imports: [
