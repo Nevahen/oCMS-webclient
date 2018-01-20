@@ -8,11 +8,18 @@ import { PageService } from '../../../page.service';
 })
 export class PagesOverviewComponent implements OnInit {
 
+  pages;
+
   constructor(private pageService:PageService) { }
 
-  pages = this.pageService.GetPageTitles();
-
   ngOnInit() {
+
+  this.pageService
+  .GetAllPages().subscribe(data =>{
+    this.pages = data
+  });
+
+
   }
 
 }

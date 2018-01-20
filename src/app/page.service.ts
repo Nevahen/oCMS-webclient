@@ -6,6 +6,9 @@ import 'rxjs/add/observable/of';
 import { Router } from '@angular/router';
 import { forEach } from '@angular/router/src/utils/collection';
 import { Page } from './_models/page';
+import { HttpClient } from '@angular/common/http';
+
+
 @Injectable()
 export class PageService {
 
@@ -16,7 +19,8 @@ export class PageService {
 
   constructor(
     private sanitazer: DomSanitizer,
-    private router:Router
+    private router:Router,
+    private http: HttpClient
   ) { }
 
   GetPage(str:string):Observable<Page>{
@@ -28,6 +32,17 @@ export class PageService {
         return Observable.of(pages[this.errorpage]);
       }
   }
+
+  GetPageByID(id:number):Observable<Page>{
+
+    return this.http.get<Page>('/api/pages/' + id);
+  }
+
+  GetAllPages():Observable<Page>{
+
+    return this.http.get<Page>('/api/pages/');
+
+  };
 
   GetPageTitles(){
 

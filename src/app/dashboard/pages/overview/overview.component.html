@@ -3,7 +3,7 @@
     <div class="col-md-3">
     <ul>
       <li *ngFor="let page of pages" class="nav-item">
-        <a [routerLink]="['edit',page]" class="nav-link">{{page}}</a>
+        <a [routerLink]="['edit', page.page_id]" class="nav-link">{{page.title}}</a>
       </li>
     </ul>
   </div>

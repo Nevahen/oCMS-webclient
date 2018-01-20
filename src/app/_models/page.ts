@@ -1,7 +1,5 @@
-export interface Page{
-
-    
+export interface Page{    
     content:string;
-    pagetitle:string;
+    title:string;
     path:string;
 }

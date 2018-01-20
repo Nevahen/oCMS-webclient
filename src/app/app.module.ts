@@ -1,8 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-
+import { HttpClientModule } from '@angular/common/http'
 import { AppComponent } from './app.component';
 import { PageviewComponent } from './pageview/pageview.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -41,6 +40,7 @@ export const ROUTES: Routes = [
     DashboardLoginComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     RouterModule.forRoot(ROUTES),
     FormsModule
