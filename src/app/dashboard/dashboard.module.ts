@@ -17,16 +17,9 @@ export const ROUTES: Routes = [
     children:[
       {path: '', component:MainviewComponent},
       {
-        path: 'pages', loadChildren:'./pages/pages.module#PagesModule'
-    
-      }
-    ],
-    
-  },
- 
-
-  
-];
+        path: 'pages', loadChildren:'./pages/pages.module#PagesModule'    
+      }]    
+  }];
 
 @NgModule({
   imports: [
@@ -36,6 +29,4 @@ export const ROUTES: Routes = [
   ],
   declarations: [DashboardComponent, MainviewComponent, DashboardNavigationComponent]
 })
-export class DashboardModule {
-
- }
+export class DashboardModule {}

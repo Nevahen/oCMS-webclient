@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router/';
 import { DomSanitizer, Title } from '@angular/platform-browser/';
 import { PageService } from '../page.service';
 import { Router } from '@angular/router/';
+import { Page } from '../_models/page';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class PageviewComponent implements OnInit {
   ngOnInit() {
     this.router.events
     .subscribe((event) => {
-      // example: NavigationStart, RoutesRecognized, NavigationEnd
+      // When the route changes, update the viewed page.
       this.id = this.route.snapshot.paramMap.get('string');   
       this.getPage(this.id);
     });
@@ -31,7 +32,7 @@ export class PageviewComponent implements OnInit {
   }
 
   private id:string;
-  public currentPage;
+  public currentPage:Page;
   /**
    * Gets the requested page from [[pageService]] and updates view and title
    *@param id The route to the page

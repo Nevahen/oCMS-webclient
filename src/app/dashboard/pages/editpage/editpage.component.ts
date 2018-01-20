@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { PageService } from '../../../page.service';
 import { ActivatedRoute,Router } from '@angular/router/';
+import { Page} from '../../../_models/page';
+import { promise, Navigation } from 'selenium-webdriver';
+import { reject } from 'q';
+import { Observable } from 'rxjs/Observable';
+import { RouterEvent } from '@angular/router';
+import { NavigationEnd } from '@angular/router';
+import { pages } from '../../../../mockdata/mockpages';
 
 @Component({
   selector: 'app-editpage',
@@ -16,15 +23,28 @@ export class EditpageComponent implements OnInit {
   ) { }
 
   pageData;
-
+  
   ngOnInit() {
     this.router.events
-    .subscribe((event) => {
-      // example: NavigationStart, RoutesRecognized, NavigationEnd
-      this.pageData = this.pageService.GetPage(this.route.snapshot.paramMap.get('page'))
+    // We want to check if route changes when we are editing, so we can update the view
+    .subscribe(event => {
+      if(event instanceof NavigationEnd){
+      this.getPageData();
+      }
     });
-  this.pageData = this.pageService.GetPage(this.route.snapshot.paramMap.get('page'))
   
+  this.getPageData();
   }
 
+  private getPageData(){
+     this.pageService
+    .GetPageByID(this.route.snapshot.params.page).subscribe(data =>{
+      this.pageData = data[0];
+      console.log(this.pageData);
+    })
+    
+   
+  }
 }
+  
+

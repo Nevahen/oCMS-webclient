@@ -1,3 +1,17 @@
-<h2>{{pageData.value.title}}</h2>
-<br/>
-{{pageData.value.content}}
+<div *ngIf="pageData" class="form-group col-md-9">
+  <form class>
+    <label for="title">
+      <h3>Page Title</h3>
+    </label>
+    <br/>
+    <input type="text" class="form-control" value="{{pageData.title}}" />
+    <br>
+    <label for="title">
+      <h4>Content</h4>
+    </label>
+    <textarea class="form-control" rows="15">{{pageData.content}}</textarea>
+    <button class="float-right btn btn-success mt-1">Save</button>
+  </form>
+  <br/>
+
+</div>
