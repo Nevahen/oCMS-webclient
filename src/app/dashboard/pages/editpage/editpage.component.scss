@@ -1,0 +1,14 @@
+.alert{
+    visibility: true;
+    position: fixed;
+    margin: 0;
+    bottom: 0;
+    width: 50%;
+    transition: all 1s ease-in-out;
+}
+
+.alert-hidden{
+    position: fixed;
+    bottom: -50px;
+
+}

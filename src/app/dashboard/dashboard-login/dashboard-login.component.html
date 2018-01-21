@@ -1,6 +1,6 @@
 <div class="col-md-4 col-xl-3 col-sm-8 mx-auto container">
     <h2>oCMS Dashboard</h2><div>
-      <div  *ngIf="errors">
+      <div *ngIf="errors">
         <p *ngFor="let error of errors" class="alert alert-danger">{{error}}</p>
       </div>
       <p *ngIf="success" class="alert alert-success">Logged in! Redirecting.</p>
