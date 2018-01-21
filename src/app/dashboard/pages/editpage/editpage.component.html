@@ -1,17 +1,23 @@
 <div *ngIf="pageData" class="form-group col-md-9">
-  <form class>
+  <form (ngSubmit)="updatePage()" #editPage="ngForm" class="form-group">
     <label for="title">
       <h3>Page Title</h3>
     </label>
     <br/>
-    <input type="text" class="form-control" value="{{pageData.title}}" />
+    <input type="text" #name="ngModel" class="form-control" [(ngModel)]="pageData.title" name="title"/>
     <br>
     <label for="title">
       <h4>Content</h4>
     </label>
-    <textarea class="form-control" rows="15">{{pageData.content}}</textarea>
-    <button class="float-right btn btn-success mt-1">Save</button>
+    <textarea class="form-control" rows="15" [(ngModel)]="pageData.content" name="content"></textarea>
+    <button class="float-right btn btn-success mt-1" [disabled]="isSaving">{{ isSaving == true ? 'Saving..' : 'Save' }}</button>
   </form>
   <br/>
+  <div class="alert" [ngClass]="
+  {
+    'alert-success': showPopup,
+    'alert-hidden': !showPopup
+  }
+  "> Page was succesfully saved!</div>
 
 </div>

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { PagesOverviewComponent } from './overview/overview.component';
 import { EditpageComponent } from './editpage/editpage.component';
+import { FormsModule } from '@angular/forms';
 
 export const ROUTES: Routes = [
   {
@@ -22,6 +23,7 @@ export const ROUTES: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule.forChild(ROUTES)
   ],
   declarations: [PagesOverviewComponent,EditpageComponent]

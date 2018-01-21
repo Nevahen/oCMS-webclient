@@ -44,6 +44,13 @@ export class PageService {
 
   };
 
+  UpdatePage(page):Observable<any>{
+    
+    let body = JSON.stringify(page);
+    return this.http.put('/api/pages',body,{headers:{'Content-Type': 'application/json'}});
+
+  }
+
   GetPageTitles(){
 
     let result = [];
