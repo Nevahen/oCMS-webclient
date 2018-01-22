@@ -8,6 +8,8 @@ import { Observable } from 'rxjs/Observable';
 import { RouterEvent } from '@angular/router';
 import { NavigationEnd } from '@angular/router';
 import { pages } from '../../../../mockdata/mockpages';
+import { Title } from '@angular/platform-browser';
+import { EditMode } from '../../../_models/editmode';
 
 @Component({
   selector: 'app-editpage',
@@ -16,11 +18,13 @@ import { pages } from '../../../../mockdata/mockpages';
 })
 export class EditpageComponent implements OnInit {
 
+ 
   constructor(
     private pageService:PageService,
     private route:ActivatedRoute,
     private router:Router,
-    private zone:NgZone
+    private zone:NgZone,
+    private title:Title
   ) { }
 
   classes = {
@@ -30,26 +34,34 @@ export class EditpageComponent implements OnInit {
   pageData;
   isSaving:boolean = false;
   showPopup = false;
-  
+  mode:EditMode;
+
   ngOnInit() {
-    this.router.events
-    // We want to check if route changes when we are editing, so we can update the view
-    .subscribe(event => {
-      if(event instanceof NavigationEnd){
-      this.getPageData();
-      }
-    });
-  
+  if(this.route.snapshot.params.page){
   this.getPageData();
+  this.mode = EditMode.EDIT_PAGE;
+  }
+  else{
+    this.pageData = {}
+    this.mode = EditMode.NEW_PAGE;    
+  }
+
   }
 
   private getPageData(){
      this.pageService
       .GetPageByID(this.route.snapshot.params.page).subscribe(data =>{
       this.pageData = data[0];
+      // Set windows title
+      this.title.setTitle("oCMS Dashboard - Edit page - " + this.pageData.title);
     })    
   }
 
+  private onSubmit(){
+
+    this.updatePage();
+
+  }
   
 /**
  * TODO: Make alert service and remove popup logic from here.
@@ -60,11 +72,11 @@ export class EditpageComponent implements OnInit {
 private updatePage(){
 
     this.isSaving = true;
-    this.showPopup = true;
 
-    this.pageService.UpdatePage(this.pageData)
+    this.pageService.UpdatePage(this.pageData,this.mode)
     .subscribe(response =>{
-      
+      this.showPopup = true;
+
       if(response.statuscode == 200){
           
         this.zone.run(() => {
@@ -78,6 +90,9 @@ private updatePage(){
             this.showPopup = false;
           },3000);     
         })
+      }
+      else{
+        // Handle API Error here
       }
     })
   }

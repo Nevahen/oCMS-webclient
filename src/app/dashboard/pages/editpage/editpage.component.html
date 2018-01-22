@@ -1,15 +1,16 @@
 <div *ngIf="pageData" class="form-group col-md-9">
-  <form (ngSubmit)="updatePage()" #editPage="ngForm" class="form-group">
+  <form (ngSubmit)="onSubmit()" #editPage="ngForm" class="form-group">
     <label for="title">
       <h3>Page Title</h3>
     </label>
     <br/>
-    <input type="text" #name="ngModel" class="form-control" [(ngModel)]="pageData.title" name="title"/>
+    <input type="text" #name="ngModel" class="form-control" [(ngModel)]="pageData.title" name="title" required minlength="4"/>
     <br>
     <label for="title">
       <h4>Content</h4>
     </label>
-    <textarea class="form-control" rows="15" [(ngModel)]="pageData.content" name="content"></textarea>
+    <textarea class="form-control" rows="15" [(ngModel)]="pageData.content" name="content" required></textarea>
+    <button class="btn btn-warning mt-1" [routerLink]="['../']">Cancel</button>
     <button class="float-right btn btn-success mt-1" [disabled]="isSaving">{{ isSaving == true ? 'Saving..' : 'Save' }}</button>
   </form>
   <br/>

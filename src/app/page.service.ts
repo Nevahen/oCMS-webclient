@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { forEach } from '@angular/router/src/utils/collection';
 import { Page } from './_models/page';
 import { HttpClient } from '@angular/common/http';
+import { EditMode } from './_models/editmode';
 
 
 @Injectable()
@@ -44,11 +45,17 @@ export class PageService {
 
   };
 
-  UpdatePage(page):Observable<any>{
+  UpdatePage(page,editmode:EditMode):Observable<any>{
     
-    let body = JSON.stringify(page);
-    return this.http.put('/api/pages',body,{headers:{'Content-Type': 'application/json'}});
+    const body = JSON.stringify(page);
 
+    switch(editmode)
+    {
+      case EditMode.EDIT_PAGE:
+    return this.http.put('/api/pages',body,{headers:{'Content-Type': 'application/json'}});
+      case EditMode.NEW_PAGE:
+    return this.http.post('/api/pages',body,{headers:{'Content-Type': 'application/json'}});
+    }
   }
 
   GetPageTitles(){

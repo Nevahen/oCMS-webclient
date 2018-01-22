@@ -1,12 +1,12 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-3">
-    <ul>
-      <li *ngFor="let page of pages" class="nav-item">
-        <a [routerLink]="['edit', page.page_id]" class="nav-link">{{page.title}}</a>
-      </li>
-    </ul>
-  </div>
-  <div class="col-md-9"><router-outlet></router-outlet></div>
-  </div>
-</div>
+<div class="row mt-5">
+  <div class="col-md-8">
+    
+    <h2>All pages</h2><button [routerLink]="['new']" class="btn btn-success float-right">Create new</button>
+    <br/>
+  <ul>
+  <li *ngFor="let page of pages" class="">
+    <a [routerLink]="['edit', page.page_id]" class="nav-link">{{page.title}}</a>
+  </li>
+  </ul>
+  
+  </div></div>
