@@ -23,8 +23,10 @@ export class EditpageComponent implements OnInit {
     private pageService:PageService,
     private route:ActivatedRoute,
     private router:Router,
+
     private zone:NgZone,
     private title:Title
+
   ) { }
 
   classes = {
@@ -34,7 +36,9 @@ export class EditpageComponent implements OnInit {
   pageData;
   isSaving:boolean = false;
   showPopup = false;
+
   mode:EditMode;
+
 
   ngOnInit() {
   if(this.route.snapshot.params.page){
@@ -52,6 +56,7 @@ export class EditpageComponent implements OnInit {
      this.pageService
       .GetPageByID(this.route.snapshot.params.page).subscribe(data =>{
       this.pageData = data[0];
+
       // Set windows title
       this.title.setTitle("oCMS Dashboard - Edit page - " + this.pageData.title);
     })    
@@ -62,6 +67,7 @@ export class EditpageComponent implements OnInit {
     this.updatePage();
 
   }
+
   
 /**
  * TODO: Make alert service and remove popup logic from here.
@@ -73,9 +79,11 @@ private updatePage(){
 
     this.isSaving = true;
 
+
     this.pageService.UpdatePage(this.pageData,this.mode)
     .subscribe(response =>{
       this.showPopup = true;
+
 
       if(response.statuscode == 200){
           
@@ -91,9 +99,10 @@ private updatePage(){
           },3000);     
         })
       }
-      else{
+
         // Handle API Error here
       }
+
     })
   }
 }  

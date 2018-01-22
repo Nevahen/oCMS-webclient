@@ -56,6 +56,7 @@ export class PageService {
       case EditMode.NEW_PAGE:
     return this.http.post('/api/pages',body,{headers:{'Content-Type': 'application/json'}});
     }
+
   }
 
   GetPageTitles(){
