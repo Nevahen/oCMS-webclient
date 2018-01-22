@@ -101,9 +101,7 @@ private updatePage(){
       }
 
         // Handle API Error here
-      }
-
-    })
+    })    
   }
 }  
 
