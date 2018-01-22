@@ -8,17 +8,20 @@ import { FormsModule } from '@angular/forms';
 export const ROUTES: Routes = [
   {
     path: '',
-    component:PagesOverviewComponent,
-    children:[{
+    component:PagesOverviewComponent}
+    ,{
       path:'edit/:page',
       component:EditpageComponent
     },
     {
       path:'edit',
       redirectTo:""
+    },
+    {
+      path:'new',
+      component:EditpageComponent
     }
   ]
-  }];
 
 @NgModule({
   imports: [

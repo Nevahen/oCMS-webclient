@@ -9,6 +9,7 @@ import { AuthGuardService } from '../auth-guard.service';
 import { DashboardNavigationComponent } from './dashboard-navigation/dashboard-navigation.component';
 import { PagesOverviewComponent } from './pages/overview/overview.component';
 import { EditpageComponent } from './pages/editpage/editpage.component';
+import { LeftPanelNaviComponent } from './left-panel-navi/left-panel-navi.component';
 
 export const ROUTES: Routes = [
   {
@@ -27,6 +28,6 @@ export const ROUTES: Routes = [
     FormsModule,
     RouterModule.forChild(ROUTES)
   ],
-  declarations: [DashboardComponent, MainviewComponent, DashboardNavigationComponent]
+  declarations: [DashboardComponent, MainviewComponent, DashboardNavigationComponent,LeftPanelNaviComponent]
 })
 export class DashboardModule {}
