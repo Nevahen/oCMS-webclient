@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageService } from '../../../page.service';
 import { Router } from '@angular/router';
+import { pages } from '../../../../mockdata/mockpages';
 
 @Component({
   selector: 'pages-overview',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 export class PagesOverviewComponent implements OnInit {
 
   pages;
+  selectedPages;
 
   constructor(
     private pageService:PageService,
@@ -23,7 +25,36 @@ export class PagesOverviewComponent implements OnInit {
     this.pages = data
   });
 
+}
 
+  getSelectedPages(){
+   var tmpArray = [];
+
+    for(let page of this.pages){
+      if(page.checked){
+        tmpArray.push(page);
+      }
+    };
+    
+    console.log(this.selectedPages)
+    this.selectedPages = tmpArray.length;
   }
 
+  selectAll(){
+
+    for(let page of this.pages){
+      page.checked = true;
+    }
+
+    this.getSelectedPages();
+  }
+
+  deselectAll(){
+
+    for(let page of this.pages){
+      page.checked = false;
+    }
+
+    this.getSelectedPages();
+  }
 }

@@ -1,12 +1,23 @@
 <div class="row mt-5">
   <div class="col-md-8">
-    
-    <h2>All pages</h2><button [routerLink]="['new']" class="btn btn-success float-right">Create new</button>
+
+    <h2 class="float-left"  draggable="true">All pages</h2>
+    <br>
+    <button (click)="deselectAll()" class="float-right">Deselect all</button><button (click)="selectAll()" class="float-right">Select all</button>
     <br/>
-  <ul>
-  <li *ngFor="let page of pages" class="">
-    <a [routerLink]="['edit', page.page_id]" class="nav-link">{{page.title}}</a>
-  </li>
-  </ul>
-  
-  </div></div>
+
+    <br/>
+    <ul class="list-group">
+      <li *ngFor="let page of pages" class="list-group-item list-group-item-action">
+        {{page.title}}  <a [routerLink]="['edit', page.page_id]" class="" alt="Edit page">✏️</a>
+        <input type="checkbox" id="page.page_id" class="float-right" (change)="getSelectedPages()" [(ngModel)]="page.checked"/>    
+      </li>
+    </ul>
+    <p *ngIf="selectedPages > 0">Selected {{selectedPages}} pages</p>
+  </div>
+  <div class="col-md-4">
+    <h2>Quick actions</h2>
+    <button [routerLink]="['new']" class="btn btn-success">Create new</button><br>
+    <button class="btn btn-danger mt-2">Delete selected</button>
+  </div>
+</div>
