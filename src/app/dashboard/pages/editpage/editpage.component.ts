@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone,Input } from '@angular/core';
 import { PageService } from '../../../page.service';
 import { ActivatedRoute,Router } from '@angular/router/';
-import { Page} from '../../../_models/page';
+import { Page} from '../../../../models/page';
 import { promise, Navigation } from 'selenium-webdriver';
 import { reject } from 'q';
 import { Observable } from 'rxjs/Observable';
@@ -9,7 +9,8 @@ import { RouterEvent } from '@angular/router';
 import { NavigationEnd } from '@angular/router';
 import { pages } from '../../../../mockdata/mockpages';
 import { Title } from '@angular/platform-browser';
-import { EditMode } from '../../../_models/editmode';
+import { EditMode } from '../../../../models/editmode';
+import { PageValidator } from '../../../../_shared/pagevalidator';
 
 @Component({
   selector: 'app-editpage',
@@ -76,6 +77,21 @@ export class EditpageComponent implements OnInit {
  * @memberof EditpageComponent
  */
 private updatePage(){
+
+  let pageValidator = new PageValidator();
+
+  pageValidator.validate(this.pageData)
+  .then((res)=>{
+    console.log(res);
+  })
+  .catch((err)=>{
+    console.log(err);
+    return;
+  });
+
+  // Refactor this to promise chains and pop alerts for user
+
+    console.log("Hey");
 
     this.isSaving = true;
 

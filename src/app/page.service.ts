@@ -5,9 +5,9 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { Router } from '@angular/router';
 import { forEach } from '@angular/router/src/utils/collection';
-import { Page } from './_models/page';
+import { Page } from '../models/page';
 import { HttpClient } from '@angular/common/http';
-import { EditMode } from './_models/editmode';
+import { EditMode } from '../models/editmode';
 
 
 @Injectable()

@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router/';
 import { DomSanitizer, Title } from '@angular/platform-browser/';
 import { PageService } from '../page.service';
 import { Router } from '@angular/router/';
-import { Page } from '../_models/page';
+import { Page } from '../../models/page';
 
 
 @Component({
