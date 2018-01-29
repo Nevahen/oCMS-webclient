@@ -1,4 +1,7 @@
 <div *ngIf="pageData" class="form-group col-md-9">
+    <ul *ngIf="errors">
+        <li *ngFor="let error of errors">{{error}}</li>
+    </ul>
   <form (ngSubmit)="onSubmit()" #editPage="ngForm" class="form-group">
     <label for="title">
       <h3>Page Title</h3>

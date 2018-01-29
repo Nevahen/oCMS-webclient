@@ -3,7 +3,7 @@ import { PageService } from '../../../page.service';
 import { ActivatedRoute,Router } from '@angular/router/';
 import { Page} from '../../../../models/page';
 import { promise, Navigation } from 'selenium-webdriver';
-import { reject } from 'q';
+import { reject, resolve } from 'q';
 import { Observable } from 'rxjs/Observable';
 import { RouterEvent } from '@angular/router';
 import { NavigationEnd } from '@angular/router';
@@ -36,6 +36,7 @@ export class EditpageComponent implements OnInit {
 
   pageData;
   isSaving:boolean = false;
+  errors:Array<string>;
   showPopup = false;
 
   mode:EditMode;
@@ -43,8 +44,8 @@ export class EditpageComponent implements OnInit {
 
   ngOnInit() {
   if(this.route.snapshot.params.page){
-  this.getPageData();
-  this.mode = EditMode.EDIT_PAGE;
+    this.getPageData();
+    this.mode = EditMode.EDIT_PAGE;
   }
   else{
     this.pageData = {}
@@ -56,7 +57,7 @@ export class EditpageComponent implements OnInit {
   private getPageData(){
      this.pageService
       .GetPageByID(this.route.snapshot.params.page).subscribe(data =>{
-      this.pageData = data[0];
+     this.pageData = data[0];
 
       // Set windows title
       this.title.setTitle("oCMS Dashboard - Edit page - " + this.pageData.title);
@@ -81,43 +82,35 @@ private updatePage(){
   let pageValidator = new PageValidator();
 
   pageValidator.validate(this.pageData)
-  .then((res)=>{
-    console.log(res);
+  .then(page =>{
+    console.log(page);
+    return this.savePage(page);
   })
   .catch((err)=>{
     console.log(err);
-    return;
+    this.errors = err;
   });
 
   // Refactor this to promise chains and pop alerts for user
+  }
 
-    console.log("Hey");
+  private savePage(page) {
 
     this.isSaving = true;
+    this.pageService.UpdatePage(page, this.mode)
+      .subscribe(response => {
+        this.showPopup = true;
+        if (response.statuscode == 200) {
+          resolve(page);
+          this.isSaving = false;
+          this.showPopup = false;
+          this.router.navigate(['/dashboard/pages']);
+        }
+        else{
+          reject(response)
+        }
+      });
+}
 
-
-    this.pageService.UpdatePage(this.pageData,this.mode)
-    .subscribe(response =>{
-      this.showPopup = true;
-
-
-      if(response.statuscode == 200){
-          
-        this.zone.run(() => {
-          setTimeout(()=>{  
-            this.isSaving = false;
-          },1000);     
-        })
-
-        this.zone.run(() => {
-          setTimeout(()=>{  
-            this.showPopup = false;
-          },3000);     
-        })
-      }
-
-        // Handle API Error here
-    })    
-  }
 }  
 
