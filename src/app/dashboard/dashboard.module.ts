@@ -10,6 +10,8 @@ import { DashboardNavigationComponent } from './dashboard-navigation/dashboard-n
 import { PagesOverviewComponent } from './pages/overview/overview.component';
 import { EditpageComponent } from './pages/editpage/editpage.component';
 import { LeftPanelNaviComponent } from './left-panel-navi/left-panel-navi.component';
+import { NavigationEditorComponent } from './navigation-editor/navigation-editor.component';
+import { MenuitemSelectorComponent } from './navigation-editor/menuitem-selector/menuitem-selector.component';
 
 export const ROUTES: Routes = [
   {
@@ -19,8 +21,13 @@ export const ROUTES: Routes = [
       {path: '', component:MainviewComponent},
       {
         path: 'pages', loadChildren:'./pages/pages.module#PagesModule'    
-      }]    
-  }];
+      },
+      {
+        path: 'navigation', component: NavigationEditorComponent
+      }
+    ]    
+  },
+];
 
 @NgModule({
   imports: [
@@ -28,6 +35,6 @@ export const ROUTES: Routes = [
     FormsModule,
     RouterModule.forChild(ROUTES)
   ],
-  declarations: [DashboardComponent, MainviewComponent, DashboardNavigationComponent,LeftPanelNaviComponent]
+  declarations: [DashboardComponent, MainviewComponent, DashboardNavigationComponent,LeftPanelNaviComponent, NavigationEditorComponent, MenuitemSelectorComponent]
 })
 export class DashboardModule {}
