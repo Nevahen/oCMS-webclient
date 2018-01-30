@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageService } from '../../../page.service';
 import { Router } from '@angular/router';
-import { pages } from '../../../../mockdata/mockpages';
 
 @Component({
   selector: 'pages-overview',
@@ -20,24 +19,41 @@ export class PagesOverviewComponent implements OnInit {
   ngOnInit() {
 
 
-  this.pageService
-  .GetAllPages().subscribe(data =>{
-    this.pages = data
-  });
+  this.getPageData();
 
-}
+  }
+
+  private getPageData() {
+    this.pageService
+      .GetAllPages().subscribe(data => {
+        this.pages = data;
+      });
+  }
 
   getSelectedPages(){
    var tmpArray = [];
 
     for(let page of this.pages){
       if(page.checked){
-        tmpArray.push(page);
+        tmpArray.push(page.page_id);
       }
     };
     
     console.log(this.selectedPages)
-    this.selectedPages = tmpArray.length;
+    this.selectedPages = tmpArray;
+  }
+
+  onDeleteSelected(){
+    console.log(this.selectedPages);
+
+    this.pageService.DeleteMultiplePages(this.selectedPages)
+    .then(v => {
+      console.log(v);
+    })
+    .then(() => {this.getPageData() })
+    .then(() => {this.selectedPages = null })
+
+
   }
 
   selectAll(){

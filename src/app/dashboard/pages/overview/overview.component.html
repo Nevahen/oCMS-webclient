@@ -13,11 +13,11 @@
         <input type="checkbox" id="page.page_id" class="float-right" (change)="getSelectedPages()" [(ngModel)]="page.checked"/>    
       </li>
     </ul>
-    <p *ngIf="selectedPages > 0">Selected {{selectedPages}} pages</p>
+    <p *ngIf="selectedPages && selectedPages.length > 0">Selected {{selectedPages.length}} pages</p>
   </div>
   <div class="col-md-4">
     <h2>Quick actions</h2>
     <button [routerLink]="['new']" class="btn btn-success">Create new</button><br>
-    <button class="btn btn-danger mt-2">Delete selected</button>
+    <button class="btn btn-danger mt-2" (click)="onDeleteSelected()">Delete selected</button>
   </div>
 </div>

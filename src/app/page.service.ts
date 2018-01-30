@@ -25,8 +25,6 @@ export class PageService {
   ) { }
 
   GetPage(str:string):Observable<Page>{
-    this.i++;
-    console.log(this.i);
       if(pages[str]){
         return Observable.of(pages[str]);
       }else{
@@ -34,9 +32,30 @@ export class PageService {
       }
   }
 
+  DeleteMultiplePages(pages:Array<number>){
+
+    return new Promise((resolve,reject) =>{
+        for(let i of pages){
+          this.DeletePageByID(i)
+          .then(v =>{
+          })
+          resolve();
+        }        
+    })
+  }
+
+
+  DeletePageByID(id:number){
+
+    return this.http.delete('/api/pages/' + id)
+    .toPromise()
+  
+  }
+
   GetPageByID(id:number):Observable<Page>{
 
     return this.http.get<Page>('/api/pages/' + id);
+  
   }
 
   GetAllPages():Observable<Page>{
