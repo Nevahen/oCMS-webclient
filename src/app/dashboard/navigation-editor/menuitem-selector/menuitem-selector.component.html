@@ -1,12 +1,12 @@
 <div class="form-row">
 
-    <div class="col">
-      <input type="text" class="form-control" placeholder="Link name" />
+    <div class="col-md-5">
+      <input #linkname [name]="linkname.value" [ngModel]="name" (ngModelChange)="onChange($event, 'name')" type="text" class="form-control" placeholder="Link name" />
     </div>
-    <div class="col">
-      <select>
-        <option disabled selected class="form-control">Link target</option>
-        <option>1</option>
+    <div class="col-md-7">
+      <select #selector [(ngModel)]="target" (ngModelChange)="onChange($event, 'target')" class="form-control">
+        <option disabled hidden selected>Link target</option>
+        <option #linkname *ngFor="let page of pageData" [value]="page.page_id">{{page.title}}</option>
       </select>
     </div>
   </div>
