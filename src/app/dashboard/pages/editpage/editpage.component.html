@@ -1,4 +1,4 @@
-<div *ngIf="pageData" class="form-group col-md-9">
+<div class="row mt-5"><div *ngIf="pageData" class="form-group col-md-8">
     <ul *ngIf="errors">
         <li *ngFor="let error of errors">{{error}}</li>
     </ul>
@@ -17,11 +17,15 @@
     <button class="float-right btn btn-success mt-1" [disabled]="isSaving">{{ isSaving == true ? 'Saving..' : 'Save' }}</button>
   </form>
   <br/>
-  <div class="alert" [ngClass]="
-  {
-    'alert-success': showPopup,
-    'alert-hidden': !showPopup
-  }
-  "> Page was succesfully saved!</div>
 
+
+</div>
+
+<div class="col-md-2 clear-fix">
+  <h2>Options</h2>
+  <input type="checkbox" name="publishstatus"><label for="publishstatus">Published</label><br/>
+  <label for="tags">Tags (Comma seperated)</label>
+  <input #tagInput type="text" class="form-control" (keyup)="onTagEnter($event)" placeholder="Example, Tutorials"><br/>
+<button *ngFor ="let tag of pageTags" class="tag"> {{tag}} </button>
+</div>
 </div>

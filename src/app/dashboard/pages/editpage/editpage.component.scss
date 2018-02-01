@@ -1,14 +1,16 @@
-.alert{
-    visibility: true;
-    position: fixed;
-    margin: 0;
-    bottom: 0;
-    width: 50%;
-    transition: all 1s ease-in-out;
+.tag{
+    background: #e2f2ff;
+    margin-left: 5px;
+    margin-top:5px;
+    border-radius: 12px;
+    padding:8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #4a4b46;
+    border: 2px solid #393c86;
+
 }
 
-.alert-hidden{
-    position: fixed;
-    bottom: -50px;
-
+.tag:hover{
+    cursor: pointer;
 }

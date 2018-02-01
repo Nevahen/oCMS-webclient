@@ -30,10 +30,7 @@ export class EditpageComponent implements OnInit {
 
   ) { }
 
-  classes = {
-    'alert-success': true
-  }
-
+  pageTags = ["addada","4262466","asdfjkl"];
   pageData;
   isSaving:boolean = false;
   errors:Array<string>;
@@ -68,6 +65,21 @@ export class EditpageComponent implements OnInit {
 
     this.updatePage();
 
+  }
+
+  private onTagEnter(e){
+    // If enter and not null
+    if(e.key == "Enter" && e.target.value != ""){
+
+    // Split tags to array
+    let tmpArr = e.target.value.split(',')
+    // Merge new tags with existing tags TODO: No duplicates thx.
+    this.pageTags = this.pageTags.concat(tmpArr);
+
+    // Clear input
+    e.target.value = "";
+
+    }
   }
 
   
