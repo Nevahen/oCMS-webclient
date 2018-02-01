@@ -46,6 +46,10 @@ export class NavigationEditorComponent implements OnInit {
       console.log(this.navData.nav_items);
   }
 
+  onDeleteNavItem(e){
+    console.log(e);
+    this.navData.nav_items.splice(e,1)
+  }
 
   getPages(){
     this.pageService.GetAllPages()

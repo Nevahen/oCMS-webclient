@@ -16,7 +16,12 @@ export class MenuitemSelectorComponent implements OnInit {
   @Input() pageData;
 
   @Output() onNavItemChange = new EventEmitter();
+  @Output() deleteThis = new EventEmitter();
 
+
+  onDeleteThis(){
+    this.deleteThis.emit(this.index);
+  }
   // Emit changes when value is being changed
   onChange(value, type){  
 
@@ -28,14 +33,14 @@ export class MenuitemSelectorComponent implements OnInit {
       this.target = value;
     }
 
-    let navItem:NavItem =
-
-    {
+    // Maybe change this to class constructor instead of making 'custom object'
+    let navItem:NavItem = {
       name:this.name,
       target:this.target,
       children:[]
     }
 
+    // Data to emit
     let data = {
       index:this.index,
       navItem:navItem

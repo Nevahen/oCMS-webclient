@@ -21,7 +21,7 @@
 <div *ngIf="pageData">
     <button (click)="onAddMenuItem()" class="btn btn-primary m-2">Add menu item</button>
 
-      <menuitem-selector (onNavItemChange)="onNavItemChange($event)" *ngFor="let navItem of navData.nav_items; index as i" [pageData]="pageData" [index]="i" class="m-1"></menuitem-selector>
+      <menuitem-selector (deleteThis)="onDeleteNavItem($event)" (onNavItemChange)="onNavItemChange($event)" *ngFor="let navItem of navData.nav_items; index as i" [pageData]="pageData" [index]="i"></menuitem-selector>
     </div>
     </form>
   </div>
