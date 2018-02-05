@@ -23,6 +23,9 @@ export const ROUTES: Routes = [
         path: 'pages', loadChildren:'./pages/pages.module#PagesModule'    
       },
       {
+        path: 'appearance', loadChildren: './appearance/appearance.module#AppearanceModule'
+      },
+      {
         path: 'navigation', component: NavigationEditorComponent
       }
     ]    

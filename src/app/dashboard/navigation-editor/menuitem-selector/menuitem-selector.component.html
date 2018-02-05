@@ -8,7 +8,7 @@
         <select #selector [(ngModel)]="target" (ngModelChange)="onChange($event, 'target')" class="form-control">
           <option disabled hidden selected>Link target</option>
           <option #linkname *ngFor="let page of pageData" [value]="page.page_id">{{page.title}}</option>
-        </select><button class="btn btn-danger ml-1" (click)="onDeleteThis()">-</button>
+        </select><button class="badge badge-danger ml-1" (click)="onDeleteThis()">-</button>
       </div>
   
     </div>

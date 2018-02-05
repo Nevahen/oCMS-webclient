@@ -21,11 +21,14 @@
 
 </div>
 
-<div class="col-md-2 clear-fix">
-  <h2>Options</h2>
-  <input type="checkbox" name="publishstatus"><label for="publishstatus">Published</label><br/>
-  <label for="tags">Tags (Comma seperated)</label>
-  <input #tagInput type="text" class="form-control" (keyup)="onTagEnter($event)" placeholder="Example, Tutorials"><br/>
-<button *ngFor ="let tag of pageTags" class="tag"> {{tag}} </button>
+<div class="col-md-2">
+  <div class="row">
+    <h2>Options</h2>
+
+    <label for="tags">Tags (Comma seperated)</label>
+    <input #tagInput type="text" class="form-control" (keyup)="onTagEnter($event)" placeholder="Example, Tutorials"><br/>
+  <button *ngFor ="let tag of pageData.tags; index as i" class="tag" (click)="onTagClick(i)"> {{tag}} </button>
+    
+</div>
 </div>
 </div>
