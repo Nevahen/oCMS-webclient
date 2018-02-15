@@ -13,8 +13,7 @@ export class SettingsService {
   ) { }
 
   GetSetting(key:string):Observable<any>{
-
-    return
+    return this.http.get('/api/settings/key/' + key);
   }
 
   /*
@@ -27,10 +26,16 @@ export class SettingsService {
 
   SetSetting(key,value){
 
+    let settingData = {
+      setting_key: key,
+      setting_value: value
+    }
+
+    return this.http.put('/api/settings', settingData);
   }
 
   SetMultipleSettings(){
-    
+
   }
 
 }

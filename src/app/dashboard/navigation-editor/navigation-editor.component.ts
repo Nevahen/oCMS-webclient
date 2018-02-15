@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageService } from '../../page.service';
 import { NavItem } from '../../../models/navitem';
+import { SettingsService } from '../../settings.service';
 
 @Component({
   selector: 'navigation-editor',
@@ -10,11 +11,30 @@ import { NavItem } from '../../../models/navitem';
 export class NavigationEditorComponent implements OnInit {
 
   constructor(
-    private pageService:PageService
+    private pageService:PageService,
+    private settingsService:SettingsService
   ) {}
 
   ngOnInit() {
     this.getPages();
+
+    this.settingsService.GetSetting("mainpage")
+    .subscribe(data =>{
+      this.navData.mainpage = data.setting_value
+    })
+
+    this.settingsService.GetSetting("errorpage")
+    .subscribe(data =>{
+      this.navData.errorpage = data.setting_value
+    })
+
+    this.settingsService.GetSetting("nav_items")
+    .subscribe(data =>{
+      this.navData.nav_items = JSON.parse(data.setting_value);
+      console.log(JSON.parse(data.setting_value));
+      console.log(this.navData.nav_items);
+    })
+
   }
 
   pageData;
@@ -48,6 +68,10 @@ export class NavigationEditorComponent implements OnInit {
 
   onSave(){
     console.log(this.navData);
+    this.settingsService.SetSetting("nav_items", JSON.stringify(this.navData.nav_items))
+    .subscribe(response =>{
+      console.log(response)
+    })
   }
 
   onDeleteNavItem(e){

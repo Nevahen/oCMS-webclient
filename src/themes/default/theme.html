@@ -16,7 +16,7 @@
     <navbar class="navbar row"></navbar>
     <div class="content row">
       <!-- main content -->
-      <div class="col-md-9 col-cs-12" [innerHtml]="currentPage.content"></div>
+      <div class="col-md-9 col-cs-12" *ngIf="currentPage != Null" [innerHtml]="currentPage.content"></div>
       <!--Widget space-->
       <div class="col-md-3 col-xs-12 widget-area">
         <div class="col-md-12">

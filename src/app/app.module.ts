@@ -10,6 +10,8 @@ import { AuthGuardService } from './auth-guard.service';
 import { LoginComponent } from './login/login.component';
 import { DashboardLoginComponent } from './dashboard/dashboard-login/dashboard-login.component';
 import { FormsModule } from '@angular/forms';
+import { SettingsService } from './settings.service';
+import { NavService } from './navigation.service';
 
 export const ROUTES: Routes = [
   {
@@ -45,7 +47,7 @@ export const ROUTES: Routes = [
     RouterModule.forRoot(ROUTES),
     FormsModule
   ],
-  providers: [PageService,AuthGuardService],
+  providers: [PageService,AuthGuardService,SettingsService, NavService],
   bootstrap: [AppComponent]
 })
 

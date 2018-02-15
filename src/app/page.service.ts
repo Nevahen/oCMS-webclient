@@ -23,12 +23,10 @@ export class PageService {
     private http: HttpClient
   ) { }
 
-  GetPage(str:string):Observable<Page>{
-      if(pages[str]){
-        return Observable.of(pages[str]);
-      }else{
-        return Observable.of(pages[this.errorpage]);
-      }
+  GetPage(str:string):Observable<any>{
+
+      return this.http.get('/api/pages/' + str);
+
   }
 
   DeleteMultiplePages(pages:Array<number>){

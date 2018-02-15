@@ -39,7 +39,7 @@ export class PageviewComponent implements OnInit {
    */
   public getPage(id:string){
     this.pageService.GetPage(id)
-    .subscribe(page => {this.currentPage = page;
+    .subscribe(page => {this.currentPage = page[0];
     this.titleService.setTitle(this.currentPage.title);
     });
   }
