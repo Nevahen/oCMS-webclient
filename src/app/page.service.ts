@@ -15,7 +15,6 @@ export class PageService {
 
 
   errorpage = "errorpage";
-  i = 0;
 
 
   constructor(

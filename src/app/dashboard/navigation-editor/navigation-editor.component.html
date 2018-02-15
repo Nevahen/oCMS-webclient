@@ -7,22 +7,23 @@
         <strong>Mainpage</strong>
       </label>
       <br/>
-      <select name="mainpage" id="mainpage" class="form-control">
-        <option *ngFor="let page of pageData">{{page.title}}</option>
+      <select name="mainpage" [(ngModel)]="navData.mainpage" id="mainpage" class="form-control">
+        <option *ngFor="let page of pageData" [value]="page.page_id">{{page.title}}</option>
       </select>
       <label for="ErrorPage">
         <strong>Errorpage</strong>
       </label>
       <br/>
-      <select name="errorpage" id="errorpage" class="form-control">
-        <option *ngFor="let page of pageData">{{page.title}}</option>
+      <select name="errorpage" [(ngModel)]="navData.errorpage" id="errorpage" class="form-control">
+        <option *ngFor="let page of pageData" [value]="page.page_id">{{page.title}}</option>
       </select>
       <h2>Menu items:</h2>
 <div *ngIf="pageData">
-    <button (click)="onAddMenuItem()" class="btn btn-primary m-2">Add menu item</button>
+    <button (click)="onAddMenuItem()"  class="btn btn-primary m-2">Add menu item</button>
 
       <menuitem-selector (deleteThis)="onDeleteNavItem($event)" (onNavItemChange)="onNavItemChange($event)" *ngFor="let navItem of navData.nav_items; index as i" [pageData]="pageData" [index]="i"></menuitem-selector>
     </div>
+    <button (click)="onSave()">Save</button>
     </form>
   </div>
 </div>
