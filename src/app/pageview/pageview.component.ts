@@ -4,6 +4,7 @@ import { DomSanitizer, Title } from '@angular/platform-browser/';
 import { PageService } from '../page.service';
 import { Router } from '@angular/router/';
 import { Page } from '../../models/page';
+import { NavService } from '../navigation.service';
 
 
 @Component({
@@ -17,31 +18,45 @@ export class PageviewComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private pageService: PageService,
-    private titleService: Title
+    private titleService: Title,
+    private navService: NavService
   ) { }
 
   ngOnInit() {
     this.router.events
-    .subscribe((event) => {
-      // When the route changes, update the viewed page.
-      this.id = this.route.snapshot.paramMap.get('string');   
-      this.getPage(this.id);
-    });
-    this.id = this.route.snapshot.paramMap.get('string');   
+      .subscribe((event) => {
+        // When the route changes, update the viewed page.
+        this.id = this.route.snapshot.paramMap.get('string');
+        this.getPage(this.id);
+      });
+    this.id = this.route.snapshot.paramMap.get('string');
     this.getPage(this.id)
   }
 
-  private id:string;
-  public currentPage:Page;
+  private id: string;
+  public currentPage: Page;
   /**
    * Gets the requested page from [[pageService]] and updates view and title
    *@param id The route to the page
    */
-  public getPage(id:string){
-    this.pageService.GetPage(id)
-    .subscribe(page => {this.currentPage = page[0];
-    this.titleService.setTitle(this.currentPage.title);
-    });
+  public getPage(id: string) {
+    if (id == null) {
+
+      this.pageService.GetMainPage()
+        .then(r => {
+          r.subscribe(page => {
+          this.currentPage = page[0];
+            this.titleService.setTitle(this.currentPage.title);
+          });
+        })
+    }
+    else {
+      this.pageService.GetPage(id)
+        .subscribe(page => {
+        this.currentPage = page[0];
+          this.titleService.setTitle(this.currentPage.title);
+        });
+    }
   }
 
 }

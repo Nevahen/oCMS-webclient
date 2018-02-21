@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import {DomSanitizer} from '@angular/platform-browser'
 var marked = require('marked')
 
 marked.setOptions({
@@ -7,7 +8,7 @@ marked.setOptions({
   tables: true,
   breaks: false,
   pedantic: false,
-  sanitize: true,
+  sanitize: false,
   smartLists: true,
   smartypants: false,
   xhtml: false
@@ -16,11 +17,17 @@ marked.setOptions({
 @Pipe({
   name: 'marked'
 })
-export class MarkedPipe implements PipeTransform {
 
+
+
+export class MarkedPipe implements PipeTransform {
+ 
+  constructor(protected _sanitizer: DomSanitizer) {
+
+	}
 
   transform(value: any, args?: any): any {
-    return marked(value);
+    return this._sanitizer.bypassSecurityTrustHtml(marked(value));
   }
 
 }

@@ -8,6 +8,7 @@ import { forEach } from '@angular/router/src/utils/collection';
 import { Page } from '../models/page';
 import { HttpClient } from '@angular/common/http';
 import { EditMode } from '../models/editmode';
+import { NavService } from './navigation.service';
 
 
 @Injectable()
@@ -19,69 +20,78 @@ export class PageService {
 
   constructor(
     private sanitazer: DomSanitizer,
-    private router:Router,
-    private http: HttpClient
+    private router: Router,
+    private http: HttpClient,
+    private navService: NavService
   ) { }
 
-  GetPage(str:string):Observable<any>{
+  GetPage(str: string): Observable<any> {
 
-      return this.http.get('/api/pages/' + str);
+    return this.http.get('/api/pages/' + str);
 
   }
 
-  DeleteMultiplePages(pages:Array<number>){
+  DeleteMultiplePages(pages: Array<number>) {
 
-    return new Promise((resolve,reject) =>{
-        for(let i of pages){
-          this.DeletePageByID(i)
-          .then(v =>{
+    return new Promise((resolve, reject) => {
+      for (let i of pages) {
+        this.DeletePageByID(i)
+          .then(v => {
           })
-          resolve();
-        }        
+        resolve();
+      }
     })
   }
 
 
-  DeletePageByID(id:number){
+  DeletePageByID(id: number) {
 
     return this.http.delete('/api/pages/' + id)
-    .toPromise()
-  
+      .toPromise()
+
   }
 
-  GetPageByID(id:number):Observable<Page>{
+  GetPageByID(id: number): Observable<Page> {
 
     return this.http.get<Page>('/api/pages/' + id);
-  
+
   }
 
-  GetAllPages():Observable<Page>{
+  GetMainPage() {
+
+    return this.navService.getMainPage()
+      .then(pageid => {
+        return this.http.get<Page>('/api/pages/' + pageid);
+      })
+
+  }
+
+  GetAllPages(): Observable<Page> {
 
     return this.http.get<Page>('/api/pages/');
 
   };
 
-  UpdatePage(page,editmode:EditMode):Observable<any>{
-    
+  UpdatePage(page, editmode: EditMode): Observable<any> {
+
     const body = JSON.stringify(page);
 
-    switch(editmode)
-    {
+    switch (editmode) {
       case EditMode.EDIT_PAGE:
-    return this.http.put('/api/pages',body,{headers:{'Content-Type': 'application/json'}});
+        return this.http.put('/api/pages', body, { headers: { 'Content-Type': 'application/json' } });
       case EditMode.NEW_PAGE:
-    return this.http.post('/api/pages',body,{headers:{'Content-Type': 'application/json'}});
+        return this.http.post('/api/pages', body, { headers: { 'Content-Type': 'application/json' } });
     }
 
   }
 
-  GetPageTitles(){
+  GetPageTitles() {
 
     let result = [];
 
-    for(let page in pages){
+    for (let page in pages) {
       result.push(page);
     }
-    return result;    
+    return result;
   }
 }
