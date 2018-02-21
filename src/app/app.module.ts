@@ -12,6 +12,7 @@ import { DashboardLoginComponent } from './dashboard/dashboard-login/dashboard-l
 import { FormsModule } from '@angular/forms';
 import { SettingsService } from './settings.service';
 import { NavService } from './navigation.service';
+import { MarkedPipe } from './marked.pipe';
 
 export const ROUTES: Routes = [
   {
@@ -39,7 +40,8 @@ export const ROUTES: Routes = [
     PageviewComponent,
     NavbarComponent,
     LoginComponent,
-    DashboardLoginComponent
+    DashboardLoginComponent,
+    MarkedPipe
   ],
   imports: [
     HttpClientModule,
