@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router/';
 import { DomSanitizer, Title } from '@angular/platform-browser/';
 import { PageService } from '../page.service';
@@ -10,7 +10,8 @@ import { NavService } from '../navigation.service';
 @Component({
   selector: 'app-pageview',
   templateUrl: '../../themes/default/theme.html',
-  styleUrls: ['../../themes/default/theme.scss']
+  styleUrls: ['../../themes/default/theme.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class PageviewComponent implements OnInit {
 

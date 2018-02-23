@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {DomSanitizer} from '@angular/platform-browser'
-var marked = require('marked')
+import {DomSanitizer} from '@angular/platform-browser';
+import * as marked from 'marked';
 
 marked.setOptions({
   renderer: new marked.Renderer(),
