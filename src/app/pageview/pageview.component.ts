@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute } from '@angular/router/';
+import { ActivatedRoute, NavigationEnd } from '@angular/router/';
 import { DomSanitizer, Title } from '@angular/platform-browser/';
 import { PageService } from '../page.service';
 import { Router } from '@angular/router/';
@@ -27,8 +27,10 @@ export class PageviewComponent implements OnInit {
     this.router.events
       .subscribe((event) => {
         // When the route changes, update the viewed page.
+        if(event instanceof NavigationEnd){
         this.id = this.route.snapshot.paramMap.get('string');
         this.getPage(this.id);
+        }
       });
     this.id = this.route.snapshot.paramMap.get('string');
     this.getPage(this.id)
