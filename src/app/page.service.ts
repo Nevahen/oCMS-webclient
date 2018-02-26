@@ -9,14 +9,11 @@ import { Page } from '../models/page';
 import { HttpClient } from '@angular/common/http';
 import { EditMode } from '../models/editmode';
 import { NavService } from './navigation.service';
+import * as errorpage from './misc/errorpage.json'
 
 
 @Injectable()
 export class PageService {
-
-
-  errorpage = "errorpage";
-
 
   constructor(
     private sanitazer: DomSanitizer,
@@ -25,10 +22,21 @@ export class PageService {
     private navService: NavService
   ) { }
 
-  GetPage(str: string): Observable<any> {
 
-    return this.http.get('/api/pages/' + str);
+  GetPage(str: string): Promise<any> {
 
+    return new Promise((resolve, reject) =>{
+      this.http.get('/api/pages/' + str)
+      .subscribe(result => {
+
+        if(result["error"]){
+          reject(errorpage)
+        
+        }
+        // Api returns array, so need to pass first element
+        resolve(result[0]);
+      })
+    })
   }
 
   DeleteMultiplePages(pages: Array<number>) {

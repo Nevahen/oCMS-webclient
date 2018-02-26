@@ -18,7 +18,6 @@ export class NavbarComponent implements OnInit {
     this.navService.GetNavData()
     .subscribe(data =>{
       this.navItems = JSON.parse(data["setting_value"]);
-      console.log(data)
     })
 
   }

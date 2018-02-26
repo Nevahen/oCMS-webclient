@@ -32,6 +32,7 @@ export class PageviewComponent implements OnInit {
         this.getPage(this.id);
         }
       });
+
     this.id = this.route.snapshot.paramMap.get('string');
     this.getPage(this.id)
   }
@@ -55,9 +56,13 @@ export class PageviewComponent implements OnInit {
     }
     else {
       this.pageService.GetPage(id)
-        .subscribe(page => {
-        this.currentPage = page[0];
+        .then(page => {
+        this.currentPage = page;
           this.titleService.setTitle(this.currentPage.title);
+        })
+        .catch(page => {
+           this.currentPage = page;
+           this.titleService.setTitle(page.title)
         });
     }
   }
