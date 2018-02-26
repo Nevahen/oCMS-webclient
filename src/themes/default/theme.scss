@@ -55,6 +55,7 @@ header{
 .navbar{
     background: white;
     box-shadow: 0px 0px 2px rgb(71, 71, 71);
+
     
     .nav-link{
         color:$secondary-color;
@@ -64,7 +65,31 @@ header{
         &:hover{
             color:blue;            
         }
+    }
 
+    @media screen and (max-width:768px){
+
+        padding:0;
+
+        .nav, .row{
+            width: 100%;
+                
+            margin:0;
+        }
+
+        .nav-item:not(:last-of-type)
+        {
+            width: 100%;
+            margin:0;
+            padding:0;
+            display: inline-block;
+            border-bottom: 1px solid black;
+            
+        }
+        .nav-link{
+           border:none;
+        }
+      
     }
 }
 
@@ -111,6 +136,18 @@ header{
         text-align: center;
 
     }
+
+    @media screen and (max-width: 768px) {
+        width: 100%;
+        padding: 0px;
+        
+
+        .row{
+            width: 100%;
+            padding: 0px;
+            margin: 0;
+        }
+    }
 }
 
 footer{
@@ -136,6 +173,12 @@ footer{
     }
   
   
+}
+
+@media screen and (max-width:768px){
+    .main-content{
+        min-height: 200px;
+    }
 }
 
 .container{

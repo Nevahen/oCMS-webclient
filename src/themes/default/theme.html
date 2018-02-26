@@ -16,25 +16,25 @@
     <navbar class="navbar row"></navbar>
     <div class="content row">
       <!-- main content -->
-      <div class="col-md-9 col-cs-12">
+      <div class="col-md-9 col-sm-12 col-12 main-content">
 
-        <div  *ngIf="currentPage != Null" [innerHtml]="currentPage.content | marked"></div>
+        <div  *ngIf="currentPage != null" [innerHtml]="currentPage.content | marked"></div>
         <div class="row tag-container"><a [routerLink]="['/78']" class="tag" *ngFor="let tag of currentPage.tags">{{tag}} </a></div>
 
 
       </div>
       <!--Widget space-->
-      <div class="col-md-3 col-xs-12 widget-area">
+      <div class="col-md-3 col-sm-12 col-12 widget-area">
         <div class="col-md-12">
           <h1>Latest Articles</h1>
-
+       
           <ul>
             <li><a [routerLink]="['/']">Check this awesome product</a></li>
             <li><a [routerLink]="['/']">Learn more about Angular!</a></li>
             <li><a [routerLink]="['/']">How to provide good services!</a></li>
           </ul>
         </div>
-        <div class="col-md-12 col-xs-12">
+        <div class="col-md-12 col-sm-12 col-12">
           <h1>Widget</h1>
         </div>
       </div>
