@@ -29,6 +29,7 @@ export class PageviewComponent implements OnInit {
         // When the route changes, update the viewed page.
         if(event instanceof NavigationEnd){
         this.id = this.route.snapshot.paramMap.get('string');
+      
         this.getPage(this.id);
         }
       });
@@ -44,7 +45,7 @@ export class PageviewComponent implements OnInit {
    *@param id The route to the page
    */
   public getPage(id: string) {
-    if (id == null) {
+    if (id == "index") {
 
       this.pageService.GetMainPage()
         .then(r => {

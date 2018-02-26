@@ -22,7 +22,8 @@ export const ROUTES: Routes = [
   },
   {
     path: '',
-    component: PageviewComponent
+    redirectTo: '/index',
+    pathMatch: 'full'
   },
   {
     path: 'dashboard/login',
