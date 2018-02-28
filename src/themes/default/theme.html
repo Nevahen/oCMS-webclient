@@ -18,9 +18,10 @@
       <!-- main content -->
       <div class="col-md-9 col-sm-12 col-12 main-content">
 
-        <div  *ngIf="currentPage != null" [innerHtml]="currentPage.content | marked"></div>
-        <div class="row tag-container"><a [routerLink]="['/78']" class="tag" *ngFor="let tag of currentPage.tags">{{tag}} </a></div>
-
+        <div *ngIf="currentPage">
+        <div [innerHtml]="currentPage.content | marked"></div>
+        <div class="row mt-2"><a [routerLink]="['/', 'tag', tag]" class="tag" *ngFor="let tag of currentPage.tags">{{tag}} </a></div>
+      </div>
 
       </div>
       <!--Widget space-->

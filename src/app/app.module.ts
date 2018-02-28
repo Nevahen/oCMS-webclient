@@ -32,8 +32,11 @@ export const ROUTES: Routes = [
   {
     path: ':string',
     component: PageviewComponent
+  },
+  {
+    path: 'tag/:string',
+    component: PageviewComponent
   }
-
 ]
 @NgModule({
   declarations: [

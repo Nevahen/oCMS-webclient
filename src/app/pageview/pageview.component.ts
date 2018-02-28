@@ -45,7 +45,7 @@ export class PageviewComponent implements OnInit {
    *@param id The route to the page
    */
   public getPage(id: string) {
-    if (id == "index") {
+    if (id === "index") {
 
       this.pageService.GetMainPage()
         .then(r => {
