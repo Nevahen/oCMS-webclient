@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AuthGuardService } from '../../auth-guard.service';
 import { ViewEncapsulation } from '@angular/core';
+import { HttpResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,24 +12,28 @@ import { ViewEncapsulation } from '@angular/core';
 })
 export class DashboardLoginComponent implements OnInit {
 
-  constructor(private authGuard: AuthGuardService) { 
+  constructor(
+    private authGuard: AuthGuardService,
+    private ref: ChangeDetectorRef,
+    private router:Router,
 
-    
-    
-  }
+  ) { }
 
   ngOnInit() {
+
+    this.router.onSameUrlNavigation = 'reload';
+
   }
 
   errors = [];
   success = false;
 
-model={name:null,
-       password:null
-      }
+  model = {
+    name:null,
+    password:null
+  }
 
 onSubmit(){
-  
   this.errors = []
 
   if(!this.model.name){
@@ -36,18 +42,19 @@ onSubmit(){
 
 
   if(!this.model.password){
-   this.errors.push("Please enter password!");
-   return;
+    this.errors.push("Please enter password!");
+    return;
   }
 
-  if(this.model.name == "admin" && this.model.password == "admin"){
-    this.success = true;
-    this.authGuard.LogIn();
-    return
+ this.authGuard.login(this.model.name,this.model.password)
+  .then((response:any) =>  {
+      this.success = true;
+    })
+  .catch(err => {
+    this.errors.push(<string>err.error.message)
+    console.log(err.error.message)
+    console.log(err)
+    })
   }
-
-  this.errors.push("Invalid login name or password");
-
-}
 
 }
