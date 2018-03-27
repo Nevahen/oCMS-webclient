@@ -23,11 +23,6 @@ export class NavigationEditorComponent implements OnInit {
       this.navData.mainpage = data.setting_value
     })
 
-    this.settingsService.GetSetting("errorpage")
-    .subscribe(data =>{
-      this.navData.errorpage = data.setting_value
-    })
-
     this.settingsService.GetSetting("nav_items")
     .subscribe(data =>{
       this.navData.nav_items = JSON.parse(data.setting_value);
@@ -38,10 +33,9 @@ export class NavigationEditorComponent implements OnInit {
   }
 
   pageData;
-
+  saving = false
   navData = {
     mainpage:null,
-    errorpage:null,
     nav_items:[]
   };
 
@@ -67,10 +61,12 @@ export class NavigationEditorComponent implements OnInit {
   }
 
   onSave(){
+    this.saving = true
     console.log(this.navData);
     this.settingsService.SetSetting("nav_items", JSON.stringify(this.navData.nav_items))
     .subscribe(response =>{
       console.log(response)
+      setTimeout(() =>{this.saving = false}, 400)
     })
   }
 

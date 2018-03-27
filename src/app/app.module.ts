@@ -14,6 +14,7 @@ import { SettingsService } from './settings.service';
 import { NavService } from './navigation.service';
 import { MarkedPipe } from './marked.pipe';
 import { TokenInterceptorService } from './token-interceptor.service';
+import { JwtInterceptorService } from './jwt-interceptor.service';
 
 export const ROUTES: Routes = [
   {
@@ -55,6 +56,7 @@ export const ROUTES: Routes = [
     FormsModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi:true},
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi:true},
     PageService,AuthGuardService,SettingsService, NavService],
   bootstrap: [AppComponent]
 })
