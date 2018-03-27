@@ -27,33 +27,40 @@ export class DashboardLoginComponent implements OnInit {
 
   errors = [];
   success = false;
+  loggingIn = false
 
   model = {
     name:null,
     password:null
   }
 
-onSubmit(){
-  this.errors = []
+  onSubmit = () =>{
+    this.errors = []
 
-  if(!this.model.name){
-    this.errors.push("Name cannot be empty!");
-  }
+    if(!this.model.name){
+      this.errors.push("Name cannot be empty!");
+    }
 
 
-  if(!this.model.password){
-    this.errors.push("Please enter password!");
-    return;
-  }
+    if(!this.model.password){
+      this.errors.push("Please enter password!");
+      return;
+    }
 
- this.authGuard.login(this.model.name,this.model.password)
-  .then((response:any) =>  {
-      this.success = true;
-    })
-  .catch(err => {
-    this.errors.push(<string>err.error.message)
-    console.log(err.error.message)
-    console.log(err)
+    this.loggingIn = true;
+
+    this.authGuard.login(this.model.name,this.model.password)
+    .then((response:any) =>  {
+        this.success = true;
+      })
+    .catch(err => {
+        this.errors.push(<string>err.error.message)
+        console.log(err.error.message)
+        console.log(err)
+      })
+    .finally(()=>{
+      this.loggingIn = false;
+      this.ref.detectChanges()
     })
   }
 

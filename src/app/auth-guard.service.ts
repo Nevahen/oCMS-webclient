@@ -56,7 +56,12 @@ export class AuthGuardService implements CanActivate {
           resolve(response)
           //Set token to localstorage
           this.setToken(response.token)
-          this.router.navigate(['./dashboard'])
+          /* Lazy loaded modules for some doesn't like to navigate without breakin things,
+          *  so we are navigating to dashboard from here for now.
+          */
+          setTimeout(() =>{
+            this.router.navigate(['./dashboard'])
+          }, 2000)
         })
         .catch(err =>{
           reject(err.error)

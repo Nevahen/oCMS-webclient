@@ -3,7 +3,8 @@
       <div *ngIf="errors">
         <p *ngFor="let error of errors" class="alert alert-danger">{{error}}</p>
       </div>
-      <p *ngIf="success" class="alert alert-success">Logged in! Redirecting.</p>
+      <p *ngIf="success" class="alert alert-success">Logged in! Redirecting.. <br/>
+      <a href="../dashboard">Click here if page doesn't load</a></p>
       <form *ngIf="!success" #loginForm="ngForm" (ngSubmit)="onSubmit()" class="form-container"><div class="form-group">
     <label for="username">Username</label>
     <input type="text" id="name" name="name" [(ngModel)]="model.name" #name="ngModel" class="form-control" required>
@@ -11,7 +12,7 @@
     <label for="password">Password</label>
     <input type="password" id="password" name="password" [(ngModel)]="model.password" #password="ngModel" class="form-control" required>
     <div class="mt-2">
-        <button type="submit" class="btn btn-primary float-right">Sign in</button>
+        <button type="submit" class="btn btn-primary float-right" [disabled]="loggingIn">{{loggingIn ? 'Please wait..' : 'Log in'}}</button>
       </div>
   </div>
   </form>
