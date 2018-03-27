@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { AppComponent } from './app.component';
 import { PageviewComponent } from './pageview/pageview.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { SettingsService } from './settings.service';
 import { NavService } from './navigation.service';
 import { MarkedPipe } from './marked.pipe';
+import { TokenInterceptorService } from './token-interceptor.service';
 
 export const ROUTES: Routes = [
   {
@@ -53,7 +54,8 @@ export const ROUTES: Routes = [
     RouterModule.forRoot(ROUTES),
     FormsModule
   ],
-  providers: [PageService,AuthGuardService,SettingsService, NavService],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi:true},
+    PageService,AuthGuardService,SettingsService, NavService],
   bootstrap: [AppComponent]
 })
 

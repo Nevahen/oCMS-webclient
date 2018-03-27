@@ -6,7 +6,7 @@ import 'rxjs/add/observable/of';
 import { Router } from '@angular/router';
 import { forEach } from '@angular/router/src/utils/collection';
 import { Page } from '../models/page';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EditMode } from '../models/editmode';
 import { NavService } from './navigation.service';
 import * as errorpage from './misc/errorpage.json'

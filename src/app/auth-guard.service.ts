@@ -24,6 +24,14 @@ export class AuthGuardService implements CanActivate {
     return false;
   }
 
+  getToken(): string{
+    return localStorage.getItem('token');
+  }
+
+  setToken(token:string){
+    localStorage.setItem('token', token)
+  }
+
   private tryLogin(username:string, password:string){
     let body = {
       username:username,
@@ -47,7 +55,7 @@ export class AuthGuardService implements CanActivate {
         .then((response:any) =>  {
           resolve(response)
           //Set token to localstorage
-          localStorage.setItem("token", response.token)
+          this.setToken(response.token)
           this.router.navigate(['./dashboard'])
         })
         .catch(err =>{
