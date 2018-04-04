@@ -5,12 +5,12 @@
       <h1>Appearance</h1>
     </div>
     <div class="row">
-      <form (submit)="onSubmit()" class="form-control">
+      <form (submit)="onSubmit()" class="form-control bg-light">
         <label>Site name</label>
         <input [(ngModel)]="appearanceData.site_name" name="site_name" type="text" class="form-control" />
         <label>Site description</label>
         <input [(ngModel)]="appearanceData.site_description" name="site_description" type="text" class="form-control" />
-        <button type="submit" class="mt-2 form-control btn btn-primary float-right">Save</button>
+        <button type="submit" class="mt-2 btn btn-primary float-right">Save</button>
       </form>
       <span class="mt-2 col-12 alert alert-primary" [class.hidden]="!messageShow">{{message}}</span>
     </div>

@@ -1,19 +1,21 @@
-<div class="row mt-5">
-  <div class="col-md-8">
+<div class="row">
+  <div class="col-md-7 mt-2">
 
-    <h2 class="float-left"  draggable="true">All pages</h2>
-    <br>
-    <button (click)="deselectAll()" class="float-right btn btn-warning">Deselect all</button><button (click)="selectAll()" class="float-right btn btn-primary">Select all</button>
-    <br/>
+<div class="row"><div class="col-md-8">
+  <h1>All pages</h1>
+</div>
+<div class="col-md-4 mt-3">
+  <button (click)="deselectAll()" class="float-right btn btn-warning">Deselect all</button> <button (click)="selectAll()" class="float-right btn btn-primary">Select all</button>
+</div>
+</div>    
 
-    <br/>
-    <ul class="list-group">
-      <li *ngFor="let page of pages" class="list-group-item list-group-item-action">
-        {{page.title}}  <a [routerLink]="['edit', page.page_id]" class="" alt="Edit page">✏️</a>
-        <input type="checkbox" id="page.page_id" class="float-right" (change)="getSelectedPages()" [(ngModel)]="page.checked"/>    
-      </li>
-    </ul>
-    <p *ngIf="selectedPages && selectedPages.length > 0">Selected {{selectedPages.length}} pages</p>
+  <div class="row"><ul class="list-group-flush col-12">
+  <li *ngFor="let page of pages" class="list-group-item list-group-item-action">
+  {{page.title}}  <a [routerLink]="['edit', page.page_id]" class="" alt="Edit page">✏️</a>
+  <input type="checkbox" id="page.page_id" class="float-right" (change)="getSelectedPages()" [(ngModel)]="page.checked"/>
+  </li>
+  </ul>
+  <p *ngIf="selectedPages && selectedPages.length > 0">Selected {{selectedPages.length}} pages</p></div>
   </div>
   <div class="col-md-4">
     <h2>Quick actions</h2>

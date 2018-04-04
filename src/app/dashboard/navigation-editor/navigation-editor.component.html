@@ -1,25 +1,33 @@
-<div class="row mt-3">
-  <div class="col-md-8">
-    <h1>Main navigation</h1>
-
-    <form>
-      <label for="MainPage">
-        <strong>Main page</strong>
-      </label>
-      <br/>
-      <select name="mainpage" [(ngModel)]="navData.mainpage" id="mainpage" class="form-control">
-        <option *ngFor="let page of pageData" [value]="page.page_id">{{page.title}}</option>
-      </select>
-      <h2>Menu items:</h2>
-    <div *ngIf="pageData">
-    <button (click)="onAddMenuItem()"  class="btn btn-primary m-2">Add menu item</button>
-
-      <span *ngFor="let navItem of navData.nav_items; index as i">    
-      <menuitem-selector (deleteThis)="onDeleteNavItem($event)" [(data)]="navData.nav_items[i]" [pageData]="pageData" [index]="i"></menuitem-selector>
-    </span>
+<div class="row">
+  <div class="col-md-7 mt-2">
+    <div class="row">
+      <h1>Main navigation</h1>
     </div>
+    <div class="row">
+      <form class="form-control bg-light">
+        <label for="MainPage">
+          <strong>Main page</strong>
+        </label>
+        <br/>
+        <select name="mainpage" [(ngModel)]="navData.mainpage" id="mainpage" class="form-control col-md-6 col-xs-12">
+          <option *ngFor="let page of pageData" [value]="page.page_id">{{page.title}}</option>
+        </select>
+        <hr/>
+        <h3>Menu items:</h3>
+        <div *ngIf="pageData">
+          <button (click)="onAddMenuItem()" class="btn btn-primary">Add menu item</button>
 
-    <button class="btn btn-primary mt-2" [class.btn-warning]="saving" [disabled]="saving" (click)="onSave()">{{saving ? 'Saving..' : 'Save'}}</button>
-    </form>
+          <span *ngFor="let navItem of navData.nav_items; index as i">
+            <menuitem-selector (deleteThis)="onDeleteNavItem($event)" [(data)]="navData.nav_items[i]" [pageData]="pageData" [index]="i"></menuitem-selector>
+          </span>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <button class="btn float-right btn-primary mt-2" [class.btn-warning]="saving" [disabled]="saving" (click)="onSave()">{{saving ? 'Saving..' : 'Save'}}</button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
