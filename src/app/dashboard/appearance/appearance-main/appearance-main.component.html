@@ -1,44 +1,18 @@
 
 <div class="row">
   <div class="col-md-7 mt-2">
-    <input type="text" placeholder="search account" class="mb-1 float-right"/>
+    <div class="row">
+      <h1>Appearance</h1>
+    </div>
+    <div class="row">
+      <form (submit)="onSubmit()" class="form-control">
+        <label>Site name</label>
+        <input [(ngModel)]="appearanceData.site_name" name="site_name" type="text" class="form-control" />
+        <label>Site description</label>
+        <input [(ngModel)]="appearanceData.site_description" name="site_description" type="text" class="form-control" />
+        <button type="submit" class="mt-2 form-control btn btn-primary float-right">Save</button>
+      </form>
+      <span class="mt-2 col-12 alert alert-primary" [class.hidden]="!messageShow">{{message}}</span>
+    </div>
   </div>
-</div>
-<div class="row">
-  
-<div class="col-md-7 mt-2">
-    <div class="table-responsive">
-<table class="table table-hover">
-
-<thead class="thead-dark">
-  <tr>
-    <th>Username</th>
-    <th>Firstname</th>
-    <th>Lastname</th>
-    <th>Account Type</th>
-  </tr>
-</thead>
-<tbody>
-
-  <tr *ngFor="let user of userData">
-
-    <th>{{user.accountName}}</th>
-    <th>{{user.firstName}}</th>
-    <th>{{user.lastName}}</th>
-    <th>{{user.accountType}}</th>
-
-  </tr>
-
-
-</tbody>
-
-</table>
-</div>
-</div>
-
-<div class="col-md-3 mt-2 sidebar">
-  <div class="row sidebar-head">
-    <h2>Heading</h2>
-  </div>
-</div>
 </div>

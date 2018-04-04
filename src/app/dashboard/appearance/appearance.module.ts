@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes } from '@angular/router/';
 import { AppearanceMainComponent } from './appearance-main/appearance-main.component';
 import { RouterModule } from '@angular/router/';
+import { FormsModule } from '@angular/forms';
 
 export const ROUTES : Routes = [{
   path: '', component: AppearanceMainComponent
@@ -11,7 +12,8 @@ export const ROUTES : Routes = [{
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(ROUTES)
+    RouterModule.forChild(ROUTES),
+    FormsModule
   ],
   declarations: [AppearanceMainComponent]
 })
