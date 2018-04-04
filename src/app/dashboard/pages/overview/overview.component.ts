@@ -47,11 +47,11 @@ export class PagesOverviewComponent implements OnInit {
     console.log(this.selectedPages);
 
     this.pageService.DeleteMultiplePages(this.selectedPages)
-    .then(v => {
-      console.log(v);
-    })
     .then(() => {this.getPageData() })
     .then(() => {this.selectedPages = null })
+    .catch(err => {
+      alert(err.error.error.message)
+    })
 
 
   }

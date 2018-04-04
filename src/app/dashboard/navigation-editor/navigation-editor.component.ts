@@ -63,10 +63,15 @@ export class NavigationEditorComponent implements OnInit {
   onSave(){
     this.saving = true
     console.log(this.navData);
+    this.navData.nav_items = this.navData.nav_items.filter(x => {
+      return x.name != null 
+    })
     this.settingsService.SetSetting("nav_items", JSON.stringify(this.navData.nav_items))
     .subscribe(response =>{
-      console.log(response)
       setTimeout(() =>{this.saving = false}, 400)
+    })
+    this.settingsService.SetSetting("mainpage", parseInt(this.navData.mainpage))
+    .subscribe(x => {
     })
   }
 

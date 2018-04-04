@@ -41,14 +41,13 @@ export class PageService {
 
   DeleteMultiplePages(pages: Array<number>) {
 
-    return new Promise((resolve, reject) => {
-      for (let i of pages) {
-        this.DeletePageByID(i)
-          .then(v => {
-          })
-        resolve();
-      }
+    let promiseArr = []
+    
+    pages.forEach(x => {
+      promiseArr.push(this.DeletePageByID(x))
     })
+  
+    return Promise.all(promiseArr)
   }
 
 
