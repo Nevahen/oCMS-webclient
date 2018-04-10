@@ -9,7 +9,7 @@
 </div>
 </div>    
 
-  <div class="row"><ul class="list-group-flush col-12">
+  <div class="row"><ul class="list-group col-12">
   <li *ngFor="let page of pages" class="list-group-item list-group-item-action">
   {{page.title}}  <a [routerLink]="['edit', page.page_id]" class="" alt="Edit page">✏️</a>
   <input type="checkbox" id="page.page_id" class="float-right" (change)="getSelectedPages()" [(ngModel)]="page.checked"/>
