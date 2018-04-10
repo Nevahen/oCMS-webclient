@@ -14,30 +14,15 @@
       </header>
     </div>
     <navbar class="navbar row"></navbar>
-    <div class="content row">
+    <div class="content justify-content-center row">
       <!-- main content -->
-      <div class="col-md-9 col-sm-12 col-12 main-content">
+      <div class="mt-2  mb-5 col-11 main-content">
 
         <div *ngIf="currentPage">
         <div [innerHtml]="currentPage.content | marked"></div>
         <div class="row mt-2"><a [routerLink]="['/', 'tag', tag]" class="tag" *ngFor="let tag of currentPage.tags">{{tag}} </a></div>
       </div>
 
-      </div>
-      <!--Widget space-->
-      <div class="col-md-3 col-sm-12 col-12 widget-area">
-        <div class="col-md-12">
-          <h1>Latest Articles</h1>
-       
-          <ul>
-            <li><a [routerLink]="['/']">Check this awesome product</a></li>
-            <li><a [routerLink]="['/']">Learn more about Angular!</a></li>
-            <li><a [routerLink]="['/']">How to provide good services!</a></li>
-          </ul>
-        </div>
-        <div class="col-md-12 col-sm-12 col-12">
-          <h1>Widget</h1>
-        </div>
       </div>
     </div>
 <div class="row clearfix">
