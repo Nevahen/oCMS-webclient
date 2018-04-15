@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone,Input } from '@angular/core';
+import { Component, OnInit, NgZone,Input, ElementRef } from '@angular/core';
 import { PageService } from '../../../page.service';
 import { ActivatedRoute,Router } from '@angular/router/';
 import { Page} from '../../../../models/page';
@@ -11,6 +11,7 @@ import { pages } from '../../../../mockdata/mockpages';
 import { Title } from '@angular/platform-browser';
 import { EditMode } from '../../../../models/editmode';
 import { PageValidator } from '../../../../_shared/pagevalidator';
+import * as ToolbarFunctions from '../../../../toolbarfunctions';
 
 @Component({
   selector: 'app-editpage',
@@ -35,7 +36,6 @@ export class EditpageComponent implements OnInit {
   isSaving:boolean = false;
   errors:Array<string>;
   showPopup = false;
-
   mode:EditMode;
 
 
@@ -49,6 +49,7 @@ export class EditpageComponent implements OnInit {
     this.pageData.tags = [];
     this.mode = EditMode.NEW_PAGE;    
   }
+
 
   }
 
@@ -85,6 +86,11 @@ export class EditpageComponent implements OnInit {
 
   private onTagClick(index){
     this.pageData.tags.splice(index, 1);
+  }
+
+  private handleToolbarClick(op){
+    let textArea = document.getElementById('textArea');
+    this.pageData.content = ToolbarFunctions.doOperation(op,this.pageData.content, textArea)
   }
 
   

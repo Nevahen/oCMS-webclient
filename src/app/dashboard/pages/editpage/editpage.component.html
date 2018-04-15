@@ -1,18 +1,28 @@
-<div class="row mt-5"><div *ngIf="pageData" class="form-group col-md-8">
+<div class="row mt-5"><div *ngIf="pageData" class="form-group col-md-7">
     <ul *ngIf="errors">
         <li *ngFor="let error of errors">{{error}}</li>
     </ul>
-  <form (ngSubmit)="onSubmit()" #editPage="ngForm" class="form-group">
-    <label for="title">
-      <h3>Page Title</h3>
-    </label>
+  <form (ngSubmit)="onSubmit()" #editPage="ngForm" class="form-control bg-light">
+  <label for="title">
+  <h3>Page Title</h3>
+  </label>
     <br/>
     <input type="text" #name="ngModel" class="form-control" [(ngModel)]="pageData.title" name="title" required minlength="4"/>
     <br>
     <label for="title">
       <h4>Content</h4>
     </label>
-    <textarea class="form-control" rows="15" [(ngModel)]="pageData.content" name="content" required></textarea>
+    <div class="mb-2">
+      <button type="button" (click)="handleToolbarClick('h1')" class="toolbar-btn">H1</button>
+      <button type="button" class="toolbar-btn">H2</button>
+      <button type="button" class="toolbar-btn">H3</button>
+      <button type="button" class="toolbar-btn">H4</button>
+      <button type="button" (click)="handleToolbarClick('link')" class="toolbar-btn">Link</button>
+      <button type="button" class="toolbar-btn">Img</button>
+      <button type="button" class="toolbar-btn">Quote</button>
+      <button type="button" class="toolbar-btn">List</button>
+      </div>
+    <textarea id="textArea" class="form-control" rows="15" [(ngModel)]="pageData.content" name="content" required></textarea>
     <button class="btn btn-warning mt-1" [routerLink]="['../']">Cancel</button>
     <button class="float-right btn btn-success mt-1" [disabled]="isSaving">{{ isSaving == true ? 'Saving..' : 'Save' }}</button>
   </form>
@@ -24,11 +34,11 @@
 <div class="col-md-2" *ngIf="pageData">
   <div class="row">
     <h2>Options</h2>
+  </div>
 
-    <label for="tags">Tags (Comma seperated)</label>
-    <input #tagInput type="text" class="form-control" (keyup)="onTagEnter($event)" placeholder="Example, Tutorials"><br/>
-  <button *ngFor ="let tag of pageData.tags; index as i" class="tag" (click)="onTagClick(i)"> {{tag}} </button>
-    
-</div>
+<div class="row"><label for="tags">Tags (Comma seperated)</label>
+<input #tagInput type="text" class="form-control" (keyup)="onTagEnter($event)" placeholder="Example, Tutorials"><br/>
+<button *ngFor ="let tag of pageData.tags; index as i" class="tag" (click)="onTagClick(i)"> {{tag}} </button>
+</div>   
 </div>
 </div>
