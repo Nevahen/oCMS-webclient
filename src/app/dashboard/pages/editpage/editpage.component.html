@@ -10,15 +10,22 @@
     <input type="text" #name="ngModel" class="form-control" [(ngModel)]="pageData.title" name="title" required minlength="4"/>
     <br>
     <label for="title">
+        <h4>Permalink</h4>
+        </label>
+          <br/>
+          http://{{hostname}}/<input type="text" #name="ngModel" class="form-control col-md-10 col-xs-12" [(ngModel)]="pageData.permalink" name="permalink" required minlength="4"/>
+          <br>
+    <label for="content">
       <h4>Content</h4>
     </label>
     <div class="mb-2">
+      <!-- To own component later-->
       <button type="button" (click)="handleToolbarClick('h1')" class="toolbar-btn">H1</button>
       <button type="button" class="toolbar-btn">H2</button>
       <button type="button" class="toolbar-btn">H3</button>
       <button type="button" class="toolbar-btn">H4</button>
       <button type="button" (click)="handleToolbarClick('link')" class="toolbar-btn">Link</button>
-      <button type="button" class="toolbar-btn">Img</button>
+      <button type="button"  (click)="handleToolbarClick('image')" class="toolbar-btn">Img</button>
       <button type="button" class="toolbar-btn">Quote</button>
       <button type="button" class="toolbar-btn">List</button>
       </div>

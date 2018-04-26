@@ -37,9 +37,10 @@ export class EditpageComponent implements OnInit {
   errors:Array<string>;
   showPopup = false;
   mode:EditMode;
-
+  hostname;
 
   ngOnInit() {
+    this.hostname = window.location.hostname;
   if(this.route.snapshot.params.page){
     this.getPageData();
     this.mode = EditMode.EDIT_PAGE;
@@ -121,17 +122,17 @@ private updatePage(){
 
     this.isSaving = true;
     this.pageService.UpdatePage(page, this.mode)
-      .subscribe(response => {
+      .then((response:any) => {
         this.showPopup = true;
         if (response.statuscode == 200) {
-          resolve(page);
           this.isSaving = false;
           this.showPopup = false;
           this.router.navigate(['/dashboard/pages']);
         }
-        else{
-          reject(response)
-        }
+
+      })
+      .catch(err =>{
+        this.isSaving = false;
       });
 }
 

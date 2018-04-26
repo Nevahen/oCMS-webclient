@@ -10,6 +10,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EditMode } from '../models/editmode';
 import { NavService } from './navigation.service';
 import * as errorpage from './misc/errorpage.json'
+import { reject, resolve } from 'q';
 
 
 @Injectable()
@@ -79,15 +80,26 @@ export class PageService {
 
   };
 
-  UpdatePage(page, editmode: EditMode): Observable<any> {
+  UpdatePage(page, editmode: EditMode) {
 
     const body = JSON.stringify(page);
 
     switch (editmode) {
       case EditMode.EDIT_PAGE:
-        return this.http.put('/api/pages', body, { headers: { 'Content-Type': 'application/json' } });
+        return this.http.put('/api/pages', body, { headers: { 'Content-Type': 'application/json' } })
+          .toPromise()
+          .then((response: any ) =>{
+            if(response.statuscode === 200){
+              return response
+            }
+          });
       case EditMode.NEW_PAGE:
-        return this.http.post('/api/pages', body, { headers: { 'Content-Type': 'application/json' } });
+        return this.http.post('/api/pages', body, { headers: { 'Content-Type': 'application/json' } }).toPromise()
+        .then((response: any ) =>{
+          if(response.statuscode === 200){
+            return response
+          }
+        });;
     }
 
   }
