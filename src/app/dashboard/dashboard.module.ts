@@ -28,6 +28,9 @@ export const ROUTES: Routes = [
       },
       {
         path: 'navigation', component: NavigationEditorComponent
+      },
+      {
+        path: 'users', component: UsersComponent
       }
     ]    
   },
