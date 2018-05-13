@@ -1,5 +1,15 @@
-function heading1(txt, elementData){    
-        let str = "# "
+function heading1(txt, elementData, h){
+
+        let str = ""
+
+        for(let i = 0; i < h; i++){
+
+            str += "#";
+
+        }
+
+        str += " "
+    
         return[txt.slice(0, elementData.selectionStart), str, txt.slice(elementData.selectionStart)].join('');
 }
 
@@ -51,7 +61,16 @@ export function doOperation(operation, text, ref){
     const elementData = checkElement(ref);
     switch(operation){        
         case 'h1':{
-            return heading1(text,elementData);
+            return heading1(text,elementData, 1);
+        }
+        case 'h2':{
+            return heading1(text,elementData, 2);
+        }
+        case 'h3':{
+            return heading1(text,elementData, 3);
+        }
+        case 'h4':{
+            return heading1(text,elementData, 4);
         }
         case 'link':{
             return link(text,elementData)

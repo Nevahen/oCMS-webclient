@@ -12,6 +12,7 @@ import { EditpageComponent } from './pages/editpage/editpage.component';
 import { LeftPanelNaviComponent } from './left-panel-navi/left-panel-navi.component';
 import { NavigationEditorComponent } from './navigation-editor/navigation-editor.component';
 import { MenuitemSelectorComponent } from './navigation-editor/menuitem-selector/menuitem-selector.component';
+import { UsersComponent } from './users/users.component';
 
 export const ROUTES: Routes = [
   {
@@ -38,6 +39,6 @@ export const ROUTES: Routes = [
     FormsModule,
     RouterModule.forChild(ROUTES)
   ],
-  declarations: [DashboardComponent, MainviewComponent, DashboardNavigationComponent,LeftPanelNaviComponent, NavigationEditorComponent, MenuitemSelectorComponent]
+  declarations: [DashboardComponent, MainviewComponent, DashboardNavigationComponent,LeftPanelNaviComponent, NavigationEditorComponent, MenuitemSelectorComponent, UsersComponent]
 })
 export class DashboardModule {}
